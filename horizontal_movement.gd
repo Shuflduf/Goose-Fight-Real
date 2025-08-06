@@ -15,16 +15,13 @@ func _physics_process(delta: float) -> void:
     if current_dir == 0:
         if last_run_dir != 0:
             run_timer += delta
-
     else:
-        if last_run_dir != current_dir:
+        if current_dir != last_run_dir:
             running = false
-        if last_run_dir == 0 or current_dir != last_run_dir:
             last_run_dir = current_dir
             run_timer = 0.0
-        else:
-            if run_timer != 0.0:
-                running = true
+        elif run_timer > 0.0:
+            running = true
             run_timer = 0.0
 
     if run_timer > RUN_WINDOW:
@@ -32,5 +29,7 @@ func _physics_process(delta: float) -> void:
         last_run_dir = 0
         running = false
 
-    p.velocity.x = lerp(p.velocity.x, input_dir * 200.0, delta * 30.0)
-    DebugDraw2D.set_text("temp", [last_run_dir, running, run_timer])
+    if running and input_dir:
+        p.velocity.x = input_dir * RUN_SPEED
+    else:
+        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED, delta * 30.0)

@@ -3,7 +3,7 @@ extends PlayerComponent
 const MAX_FALL: float = 1450.0
 const JUMP_FORCE: float = -750.0
 const HOP_FORCE: float = -400.0
-const HOP_WINDOW: float = 0.12
+const HOP_WINDOW: float = 0.1
 const MAX_COYOTE_TIME: float = 0.1
 const GRAVITY_MULT: float = 2.0
 
