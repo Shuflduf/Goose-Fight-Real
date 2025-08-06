@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-const MAX_FALL: float = 450.0
-const JUMP_FORCE: float = -350.0
-const HOP_FORCE: float = -200.0
-const HOP_WINDOW: float = 0.1
+const MAX_FALL: float = 1450.0
+const JUMP_FORCE: float = -750.0
+const HOP_FORCE: float = -400.0
+const HOP_WINDOW: float = 0.15
 const MAX_COYOTE_TIME: float = 0.1
+const GRAVITY_MULT: float = 2.0
 
 var jumping: bool = false
 var jump_timer: float = 0.0
@@ -19,7 +20,7 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 func handle_vertical(delta: float) -> void:
-    velocity.y += get_gravity().y * delta
+    velocity.y += get_gravity().y * delta * GRAVITY_MULT
     velocity.y = min(velocity.y, MAX_FALL)
 
     if is_on_floor():

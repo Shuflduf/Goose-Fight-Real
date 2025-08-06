@@ -4,20 +4,21 @@
 [ext_resource type="PackedScene" uid="uid://difolhje4qshv" path="res://player.tscn" id="2_tlwt5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
-size = Vector2(512, 128)
+size = Vector2(1024, 192)
 
 [node name="World" type="Node2D"]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 240)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_tlwt5")
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
-scale = Vector2(4, 1)
+scale = Vector2(8, 1.5)
 texture = ExtResource("2_fj7yv")
 
 [node name="Player" parent="." instance=ExtResource("2_tlwt5")]
-position = Vector2(0, -112)
+position = Vector2(0, 104)
 
 [node name="Camera2D" type="Camera2D" parent="."]
