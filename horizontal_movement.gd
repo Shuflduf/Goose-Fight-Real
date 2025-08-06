@@ -1,8 +1,11 @@
+class_name PHorizMovement
 extends PlayerComponent
 
 const WALK_SPEED: float = 250.0
-const RUN_SPEED: float = 500.0
+const RUN_SPEED: float = 450.0
 const RUN_WINDOW: float = 0.2
+const GROUND_ACCEL: float = 20.0
+const AIR_ACCEL: float = 8.0
 
 var running: bool = false
 var run_timer: float = 0.0
@@ -24,7 +27,7 @@ func _physics_process(delta: float) -> void:
             running = true
             run_timer = 0.0
 
-    if run_timer > RUN_WINDOW:
+    if run_timer > RUN_WINDOW or not p.is_on_floor():
         run_timer = 0.0
         last_run_dir = 0
         running = false
@@ -32,4 +35,5 @@ func _physics_process(delta: float) -> void:
     if running and input_dir:
         p.velocity.x = input_dir * RUN_SPEED
     else:
-        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED, delta * 30.0)
+        var accel: float = GROUND_ACCEL if p.is_on_floor() else AIR_ACCEL
+        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED, delta * accel)

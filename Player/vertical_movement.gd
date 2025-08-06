@@ -43,3 +43,5 @@ func _physics_process(delta: float) -> void:
 func apply_jump_vel(strength: float) -> void:
     p.velocity.y = strength
     jumping = false
+    var input_dir: float = Input.get_axis(&"left", &"right")
+    p.velocity.x = input_dir * PHorizMovement.WALK_SPEED
