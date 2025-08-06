@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Goose Fight Real"
+run/main_scene="uid://dfn1dj624gvd0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
