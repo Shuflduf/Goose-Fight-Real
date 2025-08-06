@@ -31,14 +31,14 @@ func handle_vertical(delta: float) -> void:
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
 
-    if jumping:
+    elif jumping:
         if Input.is_action_just_released(&"jump"):
             velocity.y = HOP_FORCE
             jumping = false
-
-        jump_timer += delta
-        if jump_timer > HOP_WINDOW:
-            apply_jump_vel(JUMP_FORCE)
+        else:
+            jump_timer += delta
+            if jump_timer > HOP_WINDOW:
+                apply_jump_vel(JUMP_FORCE)
 
 
 func apply_jump_vel(strength: float) -> void:
