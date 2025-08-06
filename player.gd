@@ -1,14 +1,13 @@
 extends CharacterBody2D
 
-const HALF_GRAV_THRESHOLD: float = 40.0
-const GRAVITY: float = 1200.0
 const MAX_FALL: float = 450.0
 const JUMP_FORCE: float = -350.0
-const JUMP_TIME: float = 0.15
+const HOP_FORCE: float = -200.0
+const HOP_WINDOW: float = 0.1
 
-var jump_timer: float = 0.0
 var jumping: bool = false
-
+var jump_timer: float = 0.0
+var has_double_jump: bool = false
 
 func _physics_process(delta: float) -> void:
     var input_dir: float = Input.get_axis("ui_left", "ui_right")
@@ -18,28 +17,30 @@ func _physics_process(delta: float) -> void:
     move_and_slide()
 
 func handle_vertical(delta: float) -> void:
-    DebugDraw2D.set_text("vert", [jump_timer, velocity.y])
-    if not is_on_floor():
-        var mult := 1.0
-        if abs(velocity.y) < HALF_GRAV_THRESHOLD and Input.is_action_pressed(&"jump"):
-            mult = 0.5
+    velocity.y += get_gravity().y * delta
+    velocity.y = min(velocity.y, MAX_FALL)
 
-        velocity.y = min(velocity.y + GRAVITY * mult * delta, MAX_FALL)
+    if is_on_floor():
+        has_double_jump = true
 
-        if Input.is_action_pressed(&"jump"):
-            if jump_timer > 0.0:
-                jump_timer -= delta
-                velocity.y += (JUMP_FORCE - velocity.y) * delta * 10
-        else:
+    if Input.is_action_just_pressed(&"jump"):
+        if is_on_floor():
             jump_timer = 0.0
-    else:
-        jump_timer = 0.0
-        jumping = false
+            jumping = true
+        elif has_double_jump:
+            apply_jump_vel(JUMP_FORCE)
+            has_double_jump = false
 
-    if is_on_floor() and Input.is_action_just_pressed(&"jump"):
-        jump()
+    if jumping:
+        if Input.is_action_just_released(&"jump"):
+            velocity.y = HOP_FORCE
+            jumping = false
 
-func jump() -> void:
-    velocity.y = JUMP_FORCE
-    jump_timer = JUMP_TIME
-    jumping = true
+        jump_timer += delta
+        if jump_timer > HOP_WINDOW:
+            apply_jump_vel(JUMP_FORCE)
+
+
+func apply_jump_vel(strength: float) -> void:
+    velocity.y = strength
+    jumping = false
