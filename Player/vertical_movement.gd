@@ -1,0 +1,48 @@
+extends Node
+
+const MAX_FALL: float = 1450.0
+const JUMP_FORCE: float = -750.0
+const HOP_FORCE: float = -400.0
+const HOP_WINDOW: float = 0.12
+const MAX_COYOTE_TIME: float = 0.1
+const GRAVITY_MULT: float = 2.0
+
+var jumping: bool = false
+var jump_timer: float = 0.0
+var has_double_jump: bool = false
+var coyote_timer: float = 0.0
+
+@onready var player: CharacterBody2D = get_parent()
+
+func _physics_process(delta: float) -> void:
+    var p: CharacterBody2D = player
+    p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
+    p.velocity.y = min(p.velocity.y, MAX_FALL)
+
+    if p.is_on_floor():
+        coyote_timer = 0.0
+        has_double_jump = true
+    else:
+        coyote_timer += delta
+
+    if Input.is_action_just_pressed(&"jump"):
+        if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
+            jump_timer = 0.0
+            jumping = true
+        elif has_double_jump:
+            apply_jump_vel(JUMP_FORCE)
+            has_double_jump = false
+
+    elif jumping:
+        if Input.is_action_just_released(&"jump"):
+            apply_jump_vel(HOP_FORCE)
+            jumping = false
+        else:
+            jump_timer += delta
+            if jump_timer > HOP_WINDOW:
+                apply_jump_vel(JUMP_FORCE)
+
+
+func apply_jump_vel(strength: float) -> void:
+    player.velocity.y = strength
+    jumping = false
