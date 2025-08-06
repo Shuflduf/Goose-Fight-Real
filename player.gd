@@ -4,10 +4,12 @@ const MAX_FALL: float = 450.0
 const JUMP_FORCE: float = -350.0
 const HOP_FORCE: float = -200.0
 const HOP_WINDOW: float = 0.1
+const MAX_COYOTE_TIME: float = 0.1
 
 var jumping: bool = false
 var jump_timer: float = 0.0
 var has_double_jump: bool = false
+var coyote_timer: float = 0.0
 
 func _physics_process(delta: float) -> void:
     var input_dir: float = Input.get_axis("ui_left", "ui_right")
@@ -21,10 +23,13 @@ func handle_vertical(delta: float) -> void:
     velocity.y = min(velocity.y, MAX_FALL)
 
     if is_on_floor():
+        coyote_timer = 0.0
         has_double_jump = true
+    else:
+        coyote_timer += delta
 
     if Input.is_action_just_pressed(&"jump"):
-        if is_on_floor():
+        if is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
             jump_timer = 0.0
             jumping = true
         elif has_double_jump:
