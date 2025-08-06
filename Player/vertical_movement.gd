@@ -47,7 +47,6 @@ func _physics_process(delta: float) -> void:
     if Input.is_action_pressed(&"down") and not p.is_on_floor():
         p.collision_mask = 1
 
-
     if Input.is_action_just_released(&"down") and quick_drop_timer == 0.0:
         quick_drop_timer += delta
 
@@ -61,7 +60,7 @@ func _physics_process(delta: float) -> void:
         quick_drop_timer = 0.0
 
 func apply_jump_vel(strength: float) -> void:
-    p.velocity.y = strength
     jumping = false
     var input_dir: float = Input.get_axis(&"left", &"right")
+    p.velocity.y = strength
     p.velocity.x = input_dir * PHorizMovement.WALK_SPEED
