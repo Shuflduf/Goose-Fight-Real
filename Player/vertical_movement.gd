@@ -1,4 +1,4 @@
-extends Node
+extends PlayerComponent
 
 const MAX_FALL: float = 1450.0
 const JUMP_FORCE: float = -750.0
@@ -12,10 +12,7 @@ var jump_timer: float = 0.0
 var has_double_jump: bool = false
 var coyote_timer: float = 0.0
 
-@onready var player: CharacterBody2D = get_parent()
-
 func _physics_process(delta: float) -> void:
-    var p: CharacterBody2D = player
     p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
     p.velocity.y = min(p.velocity.y, MAX_FALL)
 
@@ -44,5 +41,5 @@ func _physics_process(delta: float) -> void:
 
 
 func apply_jump_vel(strength: float) -> void:
-    player.velocity.y = strength
+    p.velocity.y = strength
     jumping = false

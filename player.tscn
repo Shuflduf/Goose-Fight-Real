@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://3xqqed77bhqb" path="res://icon.svg" id="2_i3pqv"]
-[ext_resource type="Script" uid="uid://b1hxng224wd66" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
+[ext_resource type="Script" uid="uid://dej8xkwj66gk1" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(48, 80)
@@ -19,3 +19,4 @@ texture = ExtResource("2_i3pqv")
 
 [node name="VerticalMovement" type="Node" parent="."]
 script = ExtResource("3_i3pqv")
+metadata/_custom_type_script = "uid://b1hxng224wd66"
