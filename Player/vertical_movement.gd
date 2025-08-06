@@ -1,6 +1,6 @@
 extends PlayerComponent
 
-const MAX_FALL: float = 1450.0
+const MAX_FALL: float = 1000.0
 const JUMP_FORCE: float = -750.0
 const HOP_FORCE: float = -400.0
 const HOP_WINDOW: float = 0.1
@@ -14,6 +14,7 @@ var has_double_jump: bool = false
 var coyote_timer: float = 0.0
 var quick_drop_timer: float = 0.0
 var drop_queued: bool = false
+var dropping: bool = false
 
 func _physics_process(delta: float) -> void:
     p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
@@ -22,7 +23,7 @@ func _physics_process(delta: float) -> void:
     if p.is_on_floor():
         coyote_timer = 0.0
         has_double_jump = true
-        quick_drop_timer = 0.0
+        p.collision_mask = 3
     else:
         coyote_timer += delta
 
@@ -43,6 +44,10 @@ func _physics_process(delta: float) -> void:
             if jump_timer > HOP_WINDOW:
                 apply_jump_vel(JUMP_FORCE)
 
+    if Input.is_action_pressed(&"down") and not p.is_on_floor():
+        p.collision_mask = 1
+
+
     if Input.is_action_just_released(&"down") and quick_drop_timer == 0.0:
         quick_drop_timer += delta
 
@@ -50,6 +55,7 @@ func _physics_process(delta: float) -> void:
         quick_drop_timer += delta
         if Input.is_action_just_pressed(&"down"):
             p.velocity.y = MAX_FALL
+            p.collision_mask = 1
 
     if quick_drop_timer > QUICK_DROP_TIME:
         quick_drop_timer = 0.0
