@@ -13,3 +13,8 @@ config_version=5
 config/name="Goose Fight Real"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[steam]
+
+initialization/app_id=480
+initialization/initialize_on_startup=true
