@@ -60,12 +60,12 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
-"duration": 2.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_urp6f")
 }],
 "loop": false,
 "name": &"flip",
-"speed": 4.0
+"speed": 24.0
 }, {
 "frames": [{
 "duration": 1.0,

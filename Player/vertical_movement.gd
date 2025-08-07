@@ -33,6 +33,7 @@ func _physics_process(delta: float) -> void:
     if Input.is_action_just_pressed(&"jump"):
         if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
             jump_timer = 0.0
+            coyote_timer = MAX_COYOTE_TIME
             jumping = true
             jump_queued.emit()
         elif has_double_jump:
