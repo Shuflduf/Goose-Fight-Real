@@ -23,6 +23,8 @@ func _physics_process(delta: float) -> void:
     p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
     p.velocity.y = min(p.velocity.y, MAX_FALL)
 
+    #DebugDraw2D.set_text("wall", [p.is_on_wall_only(), p.get_wall_normal()])
+
     if p.is_on_floor():
         coyote_timer = 0.0
         has_double_jump = true
@@ -65,6 +67,7 @@ func _physics_process(delta: float) -> void:
         quick_drop_timer = 0.0
 
 func apply_jump_vel(strength: float) -> void:
+    p.collision_mask = 3
     jumping = false
     var input_dir: float = Input.get_axis(&"left", &"right")
     p.velocity.y = strength
