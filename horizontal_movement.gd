@@ -3,6 +3,7 @@ extends PlayerComponent
 
 signal moved(is_run: bool)
 signal didnt_move
+signal flip(right: bool)
 
 @export var sprites: AnimatedSprite2D
 
@@ -53,4 +54,5 @@ func _physics_process(delta: float) -> void:
 func sprite_flipping(dir: int) -> void:
     if dir != 0:
         if p.is_on_floor():
-            sprites.flip_h = dir == 1
+            #sprites.flip_h =
+            flip.emit(dir == 1)

@@ -7,7 +7,6 @@ func _physics_process(_delta: float) -> void:
         sprites.play(&"idle")
     if sprites.animation in [&"idle", &"walk", &"run"] and not p.is_on_floor():
         sprites.play(&"air")
-    DebugDraw2D.set_text("anim", sprites.animation)
 
 func _on_vertical_movement_jumped() -> void:
     sprites.play(&"jump")
@@ -21,14 +20,22 @@ func _on_sprites_animation_finished() -> void:
     match sprites.animation:
         &"jump":
             sprites.play(&"air")
+        &"flip":
+            sprites.play(&"walk")
 
 
 func _on_horizontal_movement_moved(is_run: bool) -> void:
     var correct_anim: StringName = &"run" if is_run else &"walk"
-    if not sprites.animation in [&"jump_queue", correct_anim] and p.is_on_floor():
+    if not sprites.animation in [&"jump_queue", &"flip", correct_anim] and p.is_on_floor():
         sprites.play(correct_anim)
 
 
 func _on_horizontal_movement_didnt_move() -> void:
     if not sprites.animation in [&"idle", &"jump_queue"] and p.is_on_floor():
         sprites.play(&"idle")
+
+
+func _on_horizontal_movement_flip(right: bool) -> void:
+    if sprites.flip_h != right:
+        sprites.play(&"flip")
+        sprites.flip_h = right
