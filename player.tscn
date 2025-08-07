@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=17 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://dej8xkwj66gk1" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
@@ -28,6 +28,22 @@ region = Rect2(48, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nvl01"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ivps1"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b26j0"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7ghd"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(96, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
 animations = [{
@@ -65,6 +81,28 @@ animations = [{
 "loop": false,
 "name": &"jump_queue",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nvl01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ivps1")
+}],
+"loop": true,
+"name": &"run",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b26j0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7ghd")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -89,8 +127,9 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 position = Vector2(0, -4)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"jump_queue"
+animation = &"run"
 autoplay = "idle"
+frame_progress = 0.855005
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("5_2hs0m")
@@ -99,4 +138,6 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 
 [connection signal="jump_queued" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jump_queued"]
 [connection signal="jumped" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jumped"]
+[connection signal="didnt_move" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_didnt_move"]
+[connection signal="moved" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_moved"]
 [connection signal="animation_finished" from="Sprites" to="AnimHandler" method="_on_sprites_animation_finished"]
