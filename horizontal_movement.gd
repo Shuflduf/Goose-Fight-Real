@@ -1,6 +1,8 @@
 class_name PHorizMovement
 extends PlayerComponent
 
+@export var sprites: AnimatedSprite2D
+
 const WALK_SPEED: float = 250.0
 const RUN_SPEED: float = 450.0
 const RUN_WINDOW: float = 0.2
@@ -37,3 +39,10 @@ func _physics_process(delta: float) -> void:
     else:
         var accel: float = GROUND_ACCEL if p.is_on_floor() else AIR_ACCEL
         p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED, delta * accel)
+
+    sprite_flipping(current_dir)
+
+func sprite_flipping(dir: int) -> void:
+    if dir != 0:
+        if p.is_on_floor():
+            sprites.flip_h = dir == 1
