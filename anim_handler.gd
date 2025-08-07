@@ -5,7 +5,7 @@ extends PlayerComponent
 func _physics_process(_delta: float) -> void:
     if sprites.animation == &"air" and p.is_on_floor():
         sprites.play(&"idle")
-    if sprites.animation != &"air" and not p.is_on_floor():
+    if sprites.animation == &"idle" and not p.is_on_floor():
         sprites.play(&"air")
 
 func _on_vertical_movement_jumped() -> void:
