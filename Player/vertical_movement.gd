@@ -1,5 +1,8 @@
 extends PlayerComponent
 
+signal jump_queued
+signal jumped
+
 const MAX_FALL: float = 1000.0
 const JUMP_FORCE: float = -750.0
 const HOP_FORCE: float = -400.0
@@ -31,6 +34,7 @@ func _physics_process(delta: float) -> void:
         if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
             jump_timer = 0.0
             jumping = true
+            jump_queued.emit()
         elif has_double_jump:
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
@@ -64,3 +68,4 @@ func apply_jump_vel(strength: float) -> void:
     var input_dir: float = Input.get_axis(&"left", &"right")
     p.velocity.y = strength
     p.velocity.x = input_dir * PHorizMovement.WALK_SPEED
+    jumped.emit()
