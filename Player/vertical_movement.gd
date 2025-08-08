@@ -19,6 +19,19 @@ var quick_drop_timer: float = 0.0
 var drop_queued: bool = false
 var dropping: bool = false
 
+func _unhandled_input(event: InputEvent) -> void:
+    prints("RAWWW", event is InputEventKey, p.input_index)
+    if p.inp.event_is_action_pressed(event, &"jump"):
+        if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
+            jump_timer = 0.0
+            coyote_timer = MAX_COYOTE_TIME
+            jumping = true
+            jump_queued.emit()
+        elif has_double_jump:
+            apply_jump_vel(JUMP_FORCE)
+            has_double_jump = false
+        print("------")
+
 func _physics_process(delta: float) -> void:
     p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
     p.velocity.y = min(p.velocity.y, MAX_FALL)
@@ -32,17 +45,10 @@ func _physics_process(delta: float) -> void:
     else:
         coyote_timer += delta
 
-    if Input.is_action_just_pressed(&"jump"):
-        if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
-            jump_timer = 0.0
-            coyote_timer = MAX_COYOTE_TIME
-            jumping = true
-            jump_queued.emit()
-        elif has_double_jump:
-            apply_jump_vel(JUMP_FORCE)
-            has_double_jump = false
+    #if Input.is_action_just_pressed(&"jump"):
+        
 
-    elif jumping:
+    if jumping:
         if Input.is_action_just_released(&"jump"):
             apply_jump_vel(HOP_FORCE)
             jumping = false

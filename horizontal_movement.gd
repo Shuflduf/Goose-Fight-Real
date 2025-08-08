@@ -17,11 +17,6 @@ var running: bool = false
 var run_timer: float = 0.0
 var last_run_dir: int = 0
 
-func _unhandled_input(event: InputEvent) -> void:
-    if event is InputEventKey:
-        print("KEY")
-    if event is InputEventJoypadButton:
-        print(event.device)
 
 func _physics_process(delta: float) -> void:
     var input_dir: float = Input.get_axis(&"left", &"right")
