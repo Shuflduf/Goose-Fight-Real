@@ -12,6 +12,7 @@ signal damage(data: DamageData, body: Player)
 
 var p: Player
 var ah: AttackHandler
+var bind: AttackHandler.AttackBind
 #var facing_right: bool = false
 
 func start() -> void:

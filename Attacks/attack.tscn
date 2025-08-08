@@ -19,3 +19,5 @@ monitorable = false
 unique_name_in_owner = true
 position = Vector2(-8.66666, 0.666666)
 shape = SubResource("RectangleShape2D_2hs0m")
+
+[node name="Anim" type="AnimationPlayer" parent="."]

@@ -1,18 +1,21 @@
+class_name BoringAttack
 extends Attack
 
-func _unhandled_input(event: InputEvent) -> void:
-    var conditions: Array[bool] = [
+func conditions(event: InputEvent) -> Array[bool]:
+    return [
         p.inp.event_is_action_pressed(event, &"basic_attack"),
         p.is_on_floor(),
         p.can_move,
-        #not $Anim.is_playing(),
         ah.current_tilt == AttackHandler.Tilts.None,
     ]
-    if conditions.all(func(c: bool) -> bool: return c):
+
+func conditions_met(event: InputEvent) -> bool:
+    return conditions(event).all(func(c: bool) -> bool: return c)
+
+func _unhandled_input(event: InputEvent) -> void:
+    if conditions_met(event):
         start()
         $Anim.play(&"start")
-        #await get_tree().create_timer(0.5).timeout
-        #finished.emit()
 
 func boost() -> void:
     p.velocity.x += -150.0 * dir_mult()
@@ -23,7 +26,7 @@ func swing() -> void:
         if b == p:
             continue
 
-        print(b)
+        DebugDraw2D.set_text("hit", b, 0, Color.WHITE, 0.2)
         var data: DamageData = DamageData.new()
         data.health = 5
         damage.emit(data, b)

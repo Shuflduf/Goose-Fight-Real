@@ -73,11 +73,14 @@ func update_tilt() -> void:
 
 
 func _ready() -> void:
+    for c in get_children():
+        c.free()
     await get_tree().physics_frame
     for a in attacks:
         var new_attack: Attack = a.scene.instantiate()
         add_child(new_attack)
         new_attack.started.connect(_on_attack_started)
+        new_attack.bind = a.bind
         new_attack.p = p
         new_attack.ah = self
 

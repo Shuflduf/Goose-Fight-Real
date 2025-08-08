@@ -208,6 +208,10 @@ script = ExtResource("7_b26j0")
 attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_5htga")])
 sprites = NodePath("../Sprites")
 
+[node name="Jab" parent="Attacks" instance=ExtResource("9_nvl01")]
+
+[node name="FTilt" parent="Attacks" instance=ExtResource("10_apopc")]
+
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
