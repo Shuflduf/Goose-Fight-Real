@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d1hwmyaagk8v" path="res://Attacks/attack_ftilt.gd" id="2_v3mub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3mub"]
-size = Vector2(17.6667, 6.66667)
+size = Vector2(18.6667, 6.66667)
 
 [sub_resource type="Animation" id="Animation_v3mub"]
 resource_name = "start"
@@ -38,7 +38,7 @@ script = ExtResource("2_v3mub")
 anim_name = &"attack_ftilt"
 
 [node name="Shape" parent="HitBox" index="0"]
-position = Vector2(-4.83333, 0.666667)
+position = Vector2(-5.33332, 0.666666)
 shape = SubResource("RectangleShape2D_v3mub")
 
 [node name="Anim" parent="." index="1"]

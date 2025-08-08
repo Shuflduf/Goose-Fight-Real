@@ -8,4 +8,4 @@ script = ExtResource("2_emekd")
 anim_name = &"attack_jab"
 
 [node name="Shape" parent="HitBox" index="0"]
-position = Vector2(-9.5, -4)
+position = Vector2(-9.33333, -4.66667)

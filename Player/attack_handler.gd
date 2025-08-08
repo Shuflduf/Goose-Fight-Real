@@ -6,10 +6,10 @@ signal attack_started(anim_name: StringName)
 @export var attacks: Array[AttackInfo]
 @export var sprites: AnimatedSprite2D
 
-enum AttackBind {
+enum Binds {
     Jab,
     FTilt,
-    #UTilt,
+    UTilt,
     #DTilt,
 }
 enum Tilts {
@@ -65,11 +65,13 @@ func update_tilt() -> void:
 
     var vert_value: int = (-1 if pressed_dirs[Tilts.Up] else 0) + (1 if pressed_dirs[Tilts.Down] else 0)
     var vert_neutral: bool = vert_value == 0
-    current_tilt = Tilts.None if vert_neutral else (Tilts.Up if vert_value == 1 else Tilts.Down)
+    current_tilt = Tilts.None if vert_neutral else (Tilts.Up if vert_value == -1 else Tilts.Down)
     if p.is_on_floor() and pressed_dirs[Tilts.Forward]:
         current_tilt = Tilts.Forward
     elif not p.is_on_floor() and pressed_dirs[Tilts.Backward]:
         current_tilt = Tilts.Backward
+
+    DebugDraw2D.set_text("tilt", current_tilt)
 
 
 func _ready() -> void:

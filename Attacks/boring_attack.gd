@@ -2,11 +2,21 @@ class_name BoringAttack
 extends Attack
 
 func conditions(event: InputEvent) -> Array[bool]:
+    var key: StringName
+    var tilt: AttackHandler.Tilts
+    match bind:
+        AttackHandler.Binds.Jab:
+            tilt = AttackHandler.Tilts.None
+        AttackHandler.Binds.FTilt:
+            tilt = AttackHandler.Tilts.Forward
+        AttackHandler.Binds.UTilt:
+            tilt = AttackHandler.Tilts.Up
+
     return [
         p.inp.event_is_action_pressed(event, &"basic_attack"),
         p.is_on_floor(),
         p.can_move,
-        ah.current_tilt == AttackHandler.Tilts.None,
+        ah.current_tilt == tilt,
     ]
 
 func conditions_met(event: InputEvent) -> bool:
@@ -14,6 +24,7 @@ func conditions_met(event: InputEvent) -> bool:
 
 func _unhandled_input(event: InputEvent) -> void:
     if conditions_met(event):
+        print("AAA")
         start()
         $Anim.play(&"start")
 

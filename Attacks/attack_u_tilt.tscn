@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://cpojwfmekdy3y"]
+
+[ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/attack.tscn" id="1_8dej2"]
+[ext_resource type="Script" uid="uid://cm0pedayog6r" path="res://Attacks/attack_u_tilt.gd" id="2_oad21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oad21"]
+size = Vector2(10.6667, 10.6667)
+
+[sub_resource type="Animation" id="Animation_oad21"]
+resource_name = "start"
+length = 0.25
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"swing"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gq8wo"]
+_data = {
+&"start": SubResource("Animation_oad21")
+}
+
+[node name="UTilt" instance=ExtResource("1_8dej2")]
+script = ExtResource("2_oad21")
+anim_name = &"attack_utilt"
+
+[node name="Shape" parent="HitBox" index="0"]
+position = Vector2(1.33333, -10.6667)
+shape = SubResource("RectangleShape2D_oad21")
+
+[node name="Anim" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_gq8wo")
+}

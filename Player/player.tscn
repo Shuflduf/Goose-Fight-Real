@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=33 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://dej8xkwj66gk1" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://cvqrmse7gdai4" path="res://Attacks/attack_info.gd" id="8_n7ghd"]
 [ext_resource type="PackedScene" uid="uid://dwct0b3fqkr6c" path="res://Attacks/attack_jab.tscn" id="9_nvl01"]
 [ext_resource type="PackedScene" uid="uid://dlfd1q2hltgte" path="res://Attacks/attack_f_tilt.tscn" id="10_apopc"]
+[ext_resource type="PackedScene" uid="uid://cpojwfmekdy3y" path="res://Attacks/attack_u_tilt.tscn" id="11_5htga"]
 [ext_resource type="Script" uid="uid://euqlrk38ot1c" path="res://Player/input_handler.gd" id="11_apopc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
@@ -30,6 +31,14 @@ region = Rect2(374, 0, 34, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_apopc"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(408, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gpjlu"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(442, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(476, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gu6f8"]
 atlas = ExtResource("5_sweqy")
@@ -94,6 +103,17 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_jab",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_gpjlu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8mwp6")
+}],
+"loop": false,
+"name": &"attack_utilt",
 "speed": 4.0
 }, {
 "frames": [{
@@ -166,6 +186,12 @@ scene = ExtResource("10_apopc")
 bind = 1
 metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 
+[sub_resource type="Resource" id="Resource_p5o4e"]
+script = ExtResource("8_n7ghd")
+scene = ExtResource("11_5htga")
+bind = 2
+metadata/_custom_type_script = "uid://cvqrmse7gdai4"
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 4
@@ -189,10 +215,8 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_ftilt"
+animation = &"attack_utilt"
 autoplay = "idle"
-frame = 1
-frame_progress = 1.0
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("5_2hs0m")
@@ -205,12 +229,14 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 
 [node name="Attacks" type="Node2D" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("7_b26j0")
-attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_5htga")])
+attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_5htga"), SubResource("Resource_p5o4e")])
 sprites = NodePath("../Sprites")
 
 [node name="Jab" parent="Attacks" instance=ExtResource("9_nvl01")]
 
 [node name="FTilt" parent="Attacks" instance=ExtResource("10_apopc")]
+
+[node name="UTilt" parent="Attacks" instance=ExtResource("11_5htga")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")
