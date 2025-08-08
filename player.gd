@@ -5,5 +5,7 @@ extends CharacterBody2D
 
 @export var input_index: int = -1
 
+var can_move: bool = true
+
 func _physics_process(_delta: float) -> void:
     move_and_slide()

@@ -1,12 +1,15 @@
-[gd_scene load_steps=24 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=26 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://dej8xkwj66gk1" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
 [ext_resource type="Script" uid="uid://cummtyr5lavnp" path="res://horizontal_movement.gd" id="4_hqtel"]
-[ext_resource type="Script" path="res://anim_handler.gd" id="5_2hs0m"]
+[ext_resource type="Script" uid="uid://6wrg0orn1l5y" path="res://anim_handler.gd" id="5_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://dqcy7s6ohdqad" path="res://Sprites/goose-Sheet.png" id="5_sweqy"]
 [ext_resource type="Script" path="res://wall_jump.gd" id="6_2hs0m"]
 [ext_resource type="Script" uid="uid://euqlrk38ot1c" path="res://input_handler.gd" id="7_1jxqw"]
+[ext_resource type="Script" uid="uid://b77con38nd63l" path="res://attacks.gd" id="7_b26j0"]
+[ext_resource type="Script" uid="uid://cvqrmse7gdai4" path="res://attack_info.gd" id="8_n7ghd"]
+[ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/attack_jab.tscn" id="9_nvl01"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(48, 48)
@@ -14,6 +17,14 @@ size = Vector2(48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_606se"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(176, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_urp6f"]
 atlas = ExtResource("5_sweqy")
@@ -59,6 +70,17 @@ animations = [{
 }],
 "loop": true,
 "name": &"air",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bwjto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_606se")
+}],
+"loop": false,
+"name": &"attack_jab",
 "speed": 4.0
 }, {
 "frames": [{
@@ -119,30 +141,11 @@ animations = [{
 "speed": 4.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bwjto"]
-atlas = ExtResource("5_sweqy")
-region = Rect2(160, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_606se"]
-atlas = ExtResource("5_sweqy")
-region = Rect2(176, 0, 16, 16)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u1c27"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bwjto")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_606se")
-}],
-"loop": false,
-"name": &"default",
-"speed": 4.0
-}]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
-size = Vector2(10.6667, 5.33333)
+[sub_resource type="Resource" id="Resource_ivps1"]
+script = ExtResource("8_n7ghd")
+scene = ExtResource("9_nvl01")
+bind = 0
+metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
@@ -167,7 +170,7 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 position = Vector2(0, -4)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"flip"
+animation = &"attack_jab"
 autoplay = "idle"
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
@@ -179,24 +182,10 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 script = ExtResource("6_2hs0m")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
 
-[node name="Attacks" type="Node" parent="."]
-
-[node name="Jab" type="Node2D" parent="Attacks"]
-scale = Vector2(3, 3)
-
-[node name="Sprites" type="AnimatedSprite2D" parent="Attacks/Jab"]
-sprite_frames = SubResource("SpriteFrames_u1c27")
-frame = 1
-frame_progress = 1.0
-
-[node name="HitBox" type="Area2D" parent="Attacks/Jab"]
-collision_layer = 0
-collision_mask = 4
-monitorable = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Attacks/Jab/HitBox"]
-position = Vector2(-2.66667, 2.66667)
-shape = SubResource("RectangleShape2D_2hs0m")
+[node name="Attacks" type="Node2D" parent="." node_paths=PackedStringArray("sprites")]
+script = ExtResource("7_b26j0")
+attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1")])
+sprites = NodePath("../Sprites")
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("7_1jxqw")
