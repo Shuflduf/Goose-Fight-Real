@@ -3,6 +3,8 @@ extends PlayerComponent
 signal jump_queued
 signal jumped
 
+@export var h_movement: PHorizMovement
+
 const MAX_FALL: float = 1000.0
 const JUMP_FORCE: float = -750.0
 const HOP_FORCE: float = -400.0
@@ -20,7 +22,6 @@ var drop_queued: bool = false
 var dropping: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
-    prints("RAWWW", event is InputEventKey, p.input_index)
     if p.inp.event_is_action_pressed(event, &"jump"):
         if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
             jump_timer = 0.0
@@ -31,6 +32,11 @@ func _unhandled_input(event: InputEvent) -> void:
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
         print("------")
+    
+    if p.inp.event_is_action_pressed(event, &"down") and not p.is_on_floor():
+        p.collision_mask = 1
+    elif p.inp.event_is_action_released(event, &"down") and not p.is_on_floor():
+        p.collision_mask = 1
 
 func _physics_process(delta: float) -> void:
     p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
@@ -57,8 +63,7 @@ func _physics_process(delta: float) -> void:
             if jump_timer > HOP_WINDOW:
                 apply_jump_vel(JUMP_FORCE)
 
-    if Input.is_action_pressed(&"down") and not p.is_on_floor():
-        p.collision_mask = 1
+    
 
     if Input.is_action_just_released(&"down") and quick_drop_timer == 0.0:
         quick_drop_timer += delta
@@ -75,7 +80,6 @@ func _physics_process(delta: float) -> void:
 func apply_jump_vel(strength: float) -> void:
     p.collision_mask = 3
     jumping = false
-    var input_dir: float = Input.get_axis(&"left", &"right")
     p.velocity.y = strength
-    p.velocity.x = input_dir * PHorizMovement.WALK_SPEED
+    p.velocity.x = h_movement.input_dir * PHorizMovement.WALK_SPEED
     jumped.emit()

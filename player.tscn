@@ -153,8 +153,9 @@ script = ExtResource("1_onrkg")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fj7yv")
 
-[node name="VerticalMovement" type="Node" parent="."]
+[node name="VerticalMovement" type="Node" parent="." node_paths=PackedStringArray("h_movement")]
 script = ExtResource("3_i3pqv")
+h_movement = NodePath("../HorizontalMovement")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
 
 [node name="HorizontalMovement" type="Node" parent="." node_paths=PackedStringArray("sprites")]

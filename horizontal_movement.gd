@@ -17,10 +17,18 @@ var running: bool = false
 var run_timer: float = 0.0
 var last_run_dir: int = 0
 
+var input_dir: float = 0.0
+
+func _unhandled_input(event: InputEvent) -> void:
+    if event is InputEventJoypadMotion and event.device == p.input_index:
+        if event.axis == JOY_AXIS_LEFT_X:
+            input_dir = roundf(event.axis_value)
 
 func _physics_process(delta: float) -> void:
-    var input_dir: float = Input.get_axis(&"left", &"right")
+    if p.input_index == -1:
+        input_dir = Input.get_axis(&"left", &"right")
     var current_dir: int = int(input_dir)
+    prints(input_dir, current_dir)
 
     if current_dir == 0:
         if last_run_dir != 0:
