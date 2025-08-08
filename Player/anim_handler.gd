@@ -48,3 +48,7 @@ func _on_horizontal_movement_flip(right: bool) -> void:
     if sprites.flip_h != right:
         sprites.play(&"flip")
         sprites.flip_h = right
+
+
+func _on_attacks_attack_started(anim_name: StringName) -> void:
+    sprites.play(anim_name)

@@ -91,3 +91,7 @@ one_way_collision = true
 
 [node name="SpawnPos" type="Node2D" parent="."]
 position = Vector2(704, 488)
+
+[node name="Player" parent="." instance=ExtResource("2_tlwt5")]
+position = Vector2(839, 369)
+input_index = 0
