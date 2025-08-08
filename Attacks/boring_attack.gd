@@ -2,7 +2,7 @@ class_name BoringAttack
 extends Attack
 
 func conditions(event: InputEvent) -> Array[bool]:
-    var key: StringName
+    #var key: StringName
     var tilt: AttackHandler.Tilts
     match bind:
         AttackHandler.Binds.Jab:
@@ -11,6 +11,8 @@ func conditions(event: InputEvent) -> Array[bool]:
             tilt = AttackHandler.Tilts.Forward
         AttackHandler.Binds.UTilt:
             tilt = AttackHandler.Tilts.Up
+        AttackHandler.Binds.DTilt:
+            tilt = AttackHandler.Tilts.Down
 
     return [
         p.inp.event_is_action_pressed(event, &"basic_attack"),

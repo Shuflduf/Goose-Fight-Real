@@ -10,7 +10,7 @@ enum Binds {
     Jab,
     FTilt,
     UTilt,
-    #DTilt,
+    DTilt,
 }
 enum Tilts {
     None,
