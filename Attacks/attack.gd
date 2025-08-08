@@ -11,7 +11,7 @@ signal damage(data: DamageData, body: Player)
 @export var anim_name: StringName
 
 var p: Player
-
+var ah: AttackHandler
 #var facing_right: bool = false
 
 func start() -> void:

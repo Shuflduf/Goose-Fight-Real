@@ -4,7 +4,7 @@ extends PlayerComponent
 func event_is_action_pressed(event: InputEvent, action: StringName) -> bool:
     if not event.is_pressed():
         return false
-    
+
     if verify_device(event):
         return event.is_action_pressed(action)
     else:
@@ -13,7 +13,7 @@ func event_is_action_pressed(event: InputEvent, action: StringName) -> bool:
 func event_is_action_released(event: InputEvent, action: StringName) -> bool:
     if event.is_pressed():
         return false
-    
+
     if verify_device(event):
         return event.is_action_released(action)
     else:

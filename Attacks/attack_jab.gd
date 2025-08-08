@@ -5,6 +5,7 @@ func _unhandled_input(event: InputEvent) -> void:
         p.inp.event_is_action_pressed(event, &"basic_attack"),
         p.is_on_floor(),
         not $Anim.is_playing(),
+        ah.current_tilt == AttackHandler.Tilts.None,
     ]
     if conditions.all(func(c: bool) -> bool: return c):
         start()
