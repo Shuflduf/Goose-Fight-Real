@@ -31,12 +31,24 @@ func _unhandled_input(event: InputEvent) -> void:
         elif has_double_jump:
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
-        print("------")
     
     if p.inp.event_is_action_pressed(event, &"down") and not p.is_on_floor():
         p.collision_mask = 1
     elif p.inp.event_is_action_released(event, &"down") and not p.is_on_floor():
-        p.collision_mask = 1
+        p.collision_mask = 3
+    
+    if jumping and p.inp.event_is_action_released(event, &"jump"):
+        apply_jump_vel(HOP_FORCE)
+        jumping = false
+    
+    if p.inp.event_is_action_released(event, &"down") and quick_drop_timer == 0.0:
+        quick_drop_timer += 0.001
+    
+    if quick_drop_timer != 0.0:
+        if p.inp.event_is_action_pressed(event, &"down"):
+            p.velocity.y = MAX_FALL
+            p.collision_mask = 1
+
 
 func _physics_process(delta: float) -> void:
     p.velocity.y += p.get_gravity().y * delta * GRAVITY_MULT
@@ -52,27 +64,15 @@ func _physics_process(delta: float) -> void:
         coyote_timer += delta
 
     #if Input.is_action_just_pressed(&"jump"):
-        
-
     if jumping:
-        if Input.is_action_just_released(&"jump"):
-            apply_jump_vel(HOP_FORCE)
-            jumping = false
-        else:
-            jump_timer += delta
-            if jump_timer > HOP_WINDOW:
-                apply_jump_vel(JUMP_FORCE)
+        jump_timer += delta
+        if jump_timer > HOP_WINDOW:
+            apply_jump_vel(JUMP_FORCE)    
 
-    
-
-    if Input.is_action_just_released(&"down") and quick_drop_timer == 0.0:
-        quick_drop_timer += delta
 
     if quick_drop_timer != 0.0:
         quick_drop_timer += delta
-        if Input.is_action_just_pressed(&"down"):
-            p.velocity.y = MAX_FALL
-            p.collision_mask = 1
+
 
     if quick_drop_timer > QUICK_DROP_TIME:
         quick_drop_timer = 0.0
