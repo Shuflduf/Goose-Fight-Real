@@ -24,7 +24,7 @@ var dropping: bool = false
 func _unhandled_input(event: InputEvent) -> void:
     if not p.can_move:
         return
-    
+
     if p.inp.event_is_action_pressed(event, &"jump"):
         if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
             jump_timer = 0.0
@@ -34,19 +34,19 @@ func _unhandled_input(event: InputEvent) -> void:
         elif has_double_jump:
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
-    
+
     if p.inp.event_is_action_pressed(event, &"down") and not p.is_on_floor():
         p.collision_mask = 1
     elif p.inp.event_is_action_released(event, &"down") and not p.is_on_floor():
         p.collision_mask = 3
-    
+
     if jumping and p.inp.event_is_action_released(event, &"jump"):
         apply_jump_vel(HOP_FORCE)
         jumping = false
-    
+
     if p.inp.event_is_action_released(event, &"down") and quick_drop_timer == 0.0:
         quick_drop_timer += 0.001
-    
+
     if quick_drop_timer != 0.0:
         if p.inp.event_is_action_pressed(event, &"down"):
             p.velocity.y = MAX_FALL
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
     if jumping:
         jump_timer += delta
         if jump_timer > HOP_WINDOW:
-            apply_jump_vel(JUMP_FORCE)    
+            apply_jump_vel(JUMP_FORCE)
 
 
     if quick_drop_timer != 0.0:

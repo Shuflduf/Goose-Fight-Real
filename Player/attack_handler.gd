@@ -12,7 +12,7 @@ enum AttackBind {
 }
 
 func _ready() -> void:
-   
+
     await get_tree().physics_frame
     print(p.inp)
     for a in attacks:
@@ -22,13 +22,13 @@ func _ready() -> void:
         new_attack.finished.connect(_on_attack_finished)
         #new_attack.set_deferred(&"inp", p.inp)
         new_attack.inp = p.inp
-       
+
 
 func _on_attack_started(anim_name: StringName) -> void:
     # TODO: make this a signal
     sprites.play(anim_name)
     p.can_move = false
-    
+
 func _on_attack_finished() -> void:
     sprites.play(&"idle")
     p.can_move = true

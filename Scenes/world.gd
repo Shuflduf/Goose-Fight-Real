@@ -12,7 +12,7 @@ func _unhandled_input(event: InputEvent) -> void:
     elif is_controller and not registered_devices.has(event.device):
         registered_devices.append(event.device)
         spawn_player(event.device)
-        
+
 
 func spawn_player(input_index: int) -> void:
     var new_player: Player = player_scene.instantiate()

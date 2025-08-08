@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://ddfmqiyr3nc4m"]
 
-[ext_resource type="Script" uid="uid://d1u52dcg7k86i" path="res://attack_jab.gd" id="1_emekd"]
+[ext_resource type="Script" uid="uid://d1u52dcg7k86i" path="res://Attacks/attack_jab.gd" id="1_emekd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2hs0m"]
 size = Vector2(10.6667, 5.33333)
