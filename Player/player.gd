@@ -5,7 +5,13 @@ extends CharacterBody2D
 
 @export var input_index: int = -1
 
-var can_move: bool = true
+enum MoveState {
+    Both,
+    VertOnly,
+    None,
+}
+
+var state: MoveState = MoveState.Both
 
 func _physics_process(_delta: float) -> void:
     move_and_slide()

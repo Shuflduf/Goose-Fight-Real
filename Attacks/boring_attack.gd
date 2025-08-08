@@ -17,7 +17,7 @@ func conditions(event: InputEvent) -> Array[bool]:
     return [
         p.inp.event_is_action_pressed(event, &"basic_attack"),
         p.is_on_floor(),
-        p.can_move,
+        p.state != Player.MoveState.None,
         ah.current_tilt == tilt,
     ]
 
@@ -26,6 +26,7 @@ func conditions_met(event: InputEvent) -> bool:
 
 func _unhandled_input(event: InputEvent) -> void:
     if conditions_met(event):
+        p.state = Player.MoveState.None
         print("AAA")
         start()
         $Anim.play(&"start")

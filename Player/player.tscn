@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=39 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://dej8xkwj66gk1" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpojwfmekdy3y" path="res://Attacks/attack_u_tilt.tscn" id="11_5htga"]
 [ext_resource type="Script" uid="uid://euqlrk38ot1c" path="res://Player/input_handler.gd" id="11_apopc"]
 [ext_resource type="PackedScene" uid="uid://kasw83peblv5" path="res://Attacks/attack_d_tilt.tscn" id="12_p5o4e"]
+[ext_resource type="Script" uid="uid://5bumq6m7sqfd" path="res://Player/crouch.gd" id="14_gu6f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(48, 48)
@@ -48,6 +49,10 @@ region = Rect2(442, 0, 34, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8mwp6"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(476, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm0op"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(578, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gu6f8"]
 atlas = ExtResource("5_sweqy")
@@ -134,6 +139,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_utilt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm0op")
+}],
+"loop": true,
+"name": &"crouch",
 "speed": 4.0
 }, {
 "frames": [{
@@ -241,9 +254,8 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_dtilt"
+animation = &"crouch"
 autoplay = "idle"
-frame = 1
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("5_2hs0m")
@@ -271,6 +283,10 @@ sprites = NodePath("../Sprites")
 script = ExtResource("11_apopc")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
 
+[node name="Crouch" type="Node" parent="."]
+script = ExtResource("14_gu6f8")
+metadata/_custom_type_script = "uid://b1hxng224wd66"
+
 [connection signal="jump_queued" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jump_queued"]
 [connection signal="jumped" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jumped"]
 [connection signal="didnt_move" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_didnt_move"]
@@ -280,3 +296,4 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 [connection signal="animation_finished" from="Sprites" to="AnimHandler" method="_on_sprites_animation_finished"]
 [connection signal="animation_finished" from="Sprites" to="Attacks" method="_on_sprites_animation_finished"]
 [connection signal="attack_started" from="Attacks" to="AnimHandler" method="_on_attacks_attack_started"]
+[connection signal="crouched" from="Crouch" to="AnimHandler" method="_on_crouch_crouched"]

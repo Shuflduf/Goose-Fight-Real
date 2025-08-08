@@ -28,7 +28,7 @@ func _physics_process(delta: float) -> void:
     if p.input_index == -1:
         input_dir = Input.get_axis(&"left", &"right")
 
-    if not p.can_move:
+    if p.state != p.MoveState.Both:
         input_dir = 0.0
 
     var current_dir: int = int(input_dir)

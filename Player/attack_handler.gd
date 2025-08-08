@@ -89,12 +89,12 @@ func _ready() -> void:
 
 func _on_attack_started(anim_name: StringName) -> void:
     attack_started.emit(anim_name)
-    p.can_move = false
+    p.state == Player.MoveState.None
 
 
 func _on_sprites_animation_finished() -> void:
     if sprites.animation.begins_with("attack"):
-        p.can_move = true
+        p.state = Player.MoveState.Both
 
 
 func _on_horizontal_movement_flip(right: bool) -> void:

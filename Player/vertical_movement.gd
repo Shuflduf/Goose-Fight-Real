@@ -22,8 +22,8 @@ var drop_queued: bool = false
 var dropping: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
-    if not p.can_move:
-        return
+    if p.state == Player.MoveState.None:
+         return
 
     if p.inp.event_is_action_pressed(event, &"jump"):
         if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:

@@ -30,7 +30,7 @@ func _on_sprites_animation_finished() -> void:
 
 
 func _on_horizontal_movement_moved(is_run: bool) -> void:
-    if not p.can_move:
+    if p.state != Player.MoveState.Both:
         return
     var correct_anim: StringName = &"run" if is_run else &"walk"
     if not sprites.animation in [&"jump_queue", &"flip", correct_anim] and p.is_on_floor():
@@ -38,8 +38,9 @@ func _on_horizontal_movement_moved(is_run: bool) -> void:
 
 
 func _on_horizontal_movement_didnt_move() -> void:
-    if not p.can_move:
+    if p.state != Player.MoveState.Both:
         return
+
     if not sprites.animation in [&"idle", &"jump_queue"] and p.is_on_floor():
         sprites.play(&"idle")
 
@@ -52,3 +53,7 @@ func _on_horizontal_movement_flip(right: bool) -> void:
 
 func _on_attacks_attack_started(anim_name: StringName) -> void:
     sprites.play(anim_name)
+
+
+func _on_crouch_crouched() -> void:
+    sprites.play(&"crouch")
