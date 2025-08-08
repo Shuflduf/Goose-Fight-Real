@@ -44,6 +44,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
     update_tilt()
 
+
 func update_tilt() -> void:
     var pressed_dirs: Dictionary[Tilts, bool] = {
         Tilts.Forward: false,
@@ -70,7 +71,6 @@ func update_tilt() -> void:
     elif not p.is_on_floor() and pressed_dirs[Tilts.Backward]:
         current_tilt = Tilts.Backward
 
-    prints(pressed_dirs, current_tilt)
 
 func _ready() -> void:
     await get_tree().physics_frame

@@ -4,15 +4,18 @@ func _unhandled_input(event: InputEvent) -> void:
     var conditions: Array[bool] = [
         p.inp.event_is_action_pressed(event, &"basic_attack"),
         p.is_on_floor(),
-        not $Anim.is_playing(),
+        p.can_move,
+        #not $Anim.is_playing(),
         ah.current_tilt == AttackHandler.Tilts.None,
     ]
     if conditions.all(func(c: bool) -> bool: return c):
         start()
-        p.velocity.x += -150.0 * dir_mult()
         $Anim.play(&"start")
         #await get_tree().create_timer(0.5).timeout
         #finished.emit()
+
+func boost() -> void:
+    p.velocity.x += -150.0 * dir_mult()
 
 func swing() -> void:
     # TODO: this should work on more than just players, like objects

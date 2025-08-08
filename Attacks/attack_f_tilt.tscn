@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlfd1q2hltgte"]
+[gd_scene load_steps=6 format=3 uid="uid://dlfd1q2hltgte"]
 
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/attack.tscn" id="1_u2l5l"]
-[ext_resource type="Script" uid="uid://c7wt5y38yfxgy" path="res://Attacks/attack_f_tilt.gd" id="2_v3mub"]
+[ext_resource type="Script" uid="uid://d1u52dcg7k86i" path="res://Attacks/boring_attack.gd" id="2_v3mub"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v3mub"]
+size = Vector2(17.6667, 6.66667)
 
 [sub_resource type="Animation" id="Animation_u2l5l"]
 resource_name = "start"
@@ -14,9 +17,12 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.25),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0.2, 0.25),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"boost"
+}, {
 "args": [],
 "method": &"swing"
 }]
@@ -30,6 +36,10 @@ _data = {
 [node name="FTilt" instance=ExtResource("1_u2l5l")]
 script = ExtResource("2_v3mub")
 anim_name = &"attack_ftilt"
+
+[node name="Shape" parent="HitBox" index="0"]
+position = Vector2(-4.83333, 0.666667)
+shape = SubResource("RectangleShape2D_v3mub")
 
 [node name="Anim" type="AnimationPlayer" parent="." index="1"]
 libraries = {
