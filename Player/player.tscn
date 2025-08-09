@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=69 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Resource" uid="uid://cevxedpjw068j" path="res://Player/main_color_map.tres" id="2_n471f"]
@@ -23,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://c8pa6ieea20t7" path="res://Attacks/Basic/Aerial/attack_an_tilt.tscn" id="16_hshwv"]
 [ext_resource type="PackedScene" uid="uid://cfvsf6gds1lun" path="res://Attacks/Special/Aerial/attack_au_spec.tscn" id="17_gpjlu"]
 [ext_resource type="PackedScene" uid="uid://d2y05130b30b8" path="res://Attacks/Special/attack_f_spec.tscn" id="19_7emwf"]
+[ext_resource type="PackedScene" uid="uid://cmvtytrfxd54q" path="res://Attacks/Basic/Aerial/attack_ab_tilt.tscn" id="23_8mwp6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(48, 48)
@@ -38,6 +39,18 @@ shader_parameter/og_secondary = Color(0.662745, 0.231373, 0.231373, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3vf3"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(136, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp1hh"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(816, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qs4pp"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(850, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iyprq"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(884, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c6x0f"]
 atlas = ExtResource("5_sweqy")
@@ -147,6 +160,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"air",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_jp1hh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qs4pp")
+}, {
+"duration": 0.8,
+"texture": SubResource("AtlasTexture_iyprq")
+}],
+"loop": false,
+"name": &"attack_abtilt",
 "speed": 4.0
 }, {
 "frames": [{
@@ -387,6 +414,13 @@ bind = 8
 aerial = true
 metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 
+[sub_resource type="Resource" id="Resource_qemgg"]
+script = ExtResource("8_n7ghd")
+scene = ExtResource("23_8mwp6")
+bind = 9
+aerial = true
+metadata/_custom_type_script = "uid://cvqrmse7gdai4"
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 4
@@ -402,8 +436,9 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_ntilt"
+animation = &"attack_abtilt"
 autoplay = "idle"
+frame = 1
 
 [node name="VerticalMovement" type="Node" parent="." node_paths=PackedStringArray("h_movement")]
 script = ExtResource("3_i3pqv")
@@ -430,20 +465,22 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 
 [node name="Attacks" type="Node2D" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("7_b26j0")
-attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6")])
+attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg")])
 sprites = NodePath("../Sprites")
+
+[node name="ABTilt" parent="Attacks" instance=ExtResource("23_8mwp6")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
 
-[connection signal="animation_finished" from="Sprites" to="Attacks" method="_on_sprites_animation_finished"]
 [connection signal="animation_finished" from="Sprites" to="AnimHandler" method="_on_sprites_animation_finished"]
+[connection signal="animation_finished" from="Sprites" to="Attacks" method="_on_sprites_animation_finished"]
 [connection signal="jump_queued" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jump_queued"]
 [connection signal="jumped" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jumped"]
 [connection signal="didnt_move" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_didnt_move"]
-[connection signal="flip" from="HorizontalMovement" to="Attacks" method="_on_horizontal_movement_flip"]
 [connection signal="flip" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_flip"]
+[connection signal="flip" from="HorizontalMovement" to="Attacks" method="_on_horizontal_movement_flip"]
 [connection signal="moved" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_moved"]
 [connection signal="crouched" from="Crouch" to="AnimHandler" method="_on_crouch_crouched"]
 [connection signal="attack_started" from="Attacks" to="AnimHandler" method="_on_attacks_attack_started"]

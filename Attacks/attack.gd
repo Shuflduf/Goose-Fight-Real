@@ -41,12 +41,15 @@ func conditions() -> Array[bool]:
         AttackHandler.Binds.DTilt, \
         AttackHandler.Binds.DSpec:
             tilt = AttackHandler.Tilts.Down
+        AttackHandler.Binds.BTilt:
+            tilt = AttackHandler.Tilts.Backward
     match bind:
         AttackHandler.Binds.NTilt, \
         AttackHandler.Binds.Dash, \
         AttackHandler.Binds.FTilt, \
         AttackHandler.Binds.UTilt, \
-        AttackHandler.Binds.DTilt:
+        AttackHandler.Binds.DTilt, \
+        AttackHandler.Binds.BTilt:
             key = &"basic_attack"
         AttackHandler.Binds.NSpec, \
         AttackHandler.Binds.FSpec, \
