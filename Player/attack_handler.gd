@@ -89,7 +89,7 @@ func _ready() -> void:
         new_attack.damage.connect(_on_attack_damage)
 
 func _on_attack_damage(data: DamageData, body: Player) -> void:
-    DebugDraw2D.set_text("hit", body, 0, Color.WHITE, 0.2)
+    DebugDraw2D.set_text("hit", [body, data.health], 0, Color.WHITE, 0.2)
 
 func _on_attack_started(anim_name: StringName) -> void:
     attack_started.emit(anim_name)
