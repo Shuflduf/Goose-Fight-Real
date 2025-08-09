@@ -52,11 +52,12 @@ func _physics_process(delta: float) -> void:
         last_run_dir = 0
         running = false
 
+    var friction_mult: float = 1.0 if input_dir != 0.0 else 0.5
     if running and input_dir:
         p.velocity.x = input_dir * RUN_SPEED * movement_speed_mult
     else:
         var accel: float = GROUND_ACCEL if p.is_on_floor() else AIR_ACCEL
-        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED * movement_speed_mult, delta * accel)
+        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED * movement_speed_mult, delta * accel * friction_mult)
 
     sprite_flipping(current_dir)
     if p.is_on_floor():
