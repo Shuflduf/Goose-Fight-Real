@@ -43,8 +43,8 @@ _data = {
 &"start": SubResource("Animation_uf0tv")
 }
 
-[node name="Jab" instance=ExtResource("1_r2krn")]
-anim_name = &"attack_jab"
+[node name="NTilt" instance=ExtResource("1_r2krn")]
+anim_name = &"attack_ntilt"
 
 [node name="Shape" parent="HitBox" index="0"]
 position = Vector2(-6.66667, -2.66667)

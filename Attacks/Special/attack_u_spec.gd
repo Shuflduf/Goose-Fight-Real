@@ -1,7 +1,8 @@
+class_name USpecAttack
 extends BoringAttack
 
 func slow() -> void:
-    p.velocity.y = 0.0
+    p.velocity.y = min(p.velocity.y, 0.0)
 
 func boost() -> void:
     p.velocity.y = -1200.0

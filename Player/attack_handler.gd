@@ -7,8 +7,8 @@ signal attack_started(anim_name: StringName)
 @export var sprites: AnimatedSprite2D
 
 enum Binds {
-    Jab,
     Dash,
+    NTilt,
     FTilt,
     UTilt,
     DTilt,
@@ -33,7 +33,6 @@ var dir_inputs: Dictionary[StringName, bool] = {
 }
 var current_tilt: Tilts = Tilts.None
 var facing_right: bool = false
-
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -86,7 +85,7 @@ func _ready() -> void:
     for a in attacks:
         var new_attack: Attack = a.scene.instantiate()
         add_child(new_attack)
-        new_attack.airial = a.airial
+        new_attack.aerial = a.aerial
         new_attack.bind = a.bind
         new_attack.p = p
         new_attack.ah = self
@@ -94,15 +93,19 @@ func _ready() -> void:
         new_attack.damage.connect(_on_attack_damage)
         new_attack.finished_early.connect(_on_attack_finished_early)
 
+
 func _on_attack_damage(data: DamageData, body: Player) -> void:
     DebugDraw2D.set_text("hit", [body, data.health], 0, Color.WHITE, 0.2)
+
 
 func _on_attack_started(anim_name: StringName) -> void:
     attack_started.emit(anim_name)
     p.state = Player.MoveState.None
 
+
 func _on_attack_finished_early() -> void:
     p.state = Player.MoveState.Both
+
 
 func _on_sprites_animation_finished() -> void:
     if sprites.animation.begins_with("attack"):
