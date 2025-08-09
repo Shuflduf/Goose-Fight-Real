@@ -44,4 +44,3 @@ position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_egsyh")
 autoplay = "default"
-frame_progress = 0.82576

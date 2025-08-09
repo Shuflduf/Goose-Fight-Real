@@ -8,7 +8,7 @@ var in_vehicle: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
     super(event)
-    if p.inp.event_is_action_just_pressed(event, &"jump"):
+    if p.inp.event_is_action_just_pressed(event, &"jump") and in_vehicle:
         finished_early.emit()
         in_vehicle = false
         # this is surely a good idea
