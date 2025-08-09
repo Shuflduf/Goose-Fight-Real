@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=56 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Resource" uid="uid://cevxedpjw068j" path="res://Player/main_color_map.tres" id="2_n471f"]
@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://kasw83peblv5" path="res://Attacks/Basic/attack_d_tilt.tscn" id="12_p5o4e"]
 [ext_resource type="PackedScene" uid="uid://d2nth4artgcuy" path="res://Attacks/Special/attack_n_spec.tscn" id="13_dkpta"]
 [ext_resource type="Script" uid="uid://5bumq6m7sqfd" path="res://Player/crouch.gd" id="14_gu6f8"]
-[ext_resource type="PackedScene" uid="uid://o85h43h10uvv" path="res://Attacks/Special/attack_f_spec.tscn" id="14_lfmf2"]
+[ext_resource type="PackedScene" uid="uid://o85h43h10uvv" path="res://Attacks/Special/attack_dash.tscn" id="14_lfmf2"]
 [ext_resource type="PackedScene" uid="uid://b0fsufejouwtq" path="res://Attacks/Special/attack_u_spec.tscn" id="15_pisgm"]
 [ext_resource type="PackedScene" uid="uid://blruu806aguay" path="res://Attacks/Special/attack_d_spec.tscn" id="16_b1ygp"]
 
@@ -36,6 +36,10 @@ shader_parameter/og_secondary = Color(0.662745, 0.231373, 0.231373, 1)
 atlas = ExtResource("5_sweqy")
 region = Rect2(136, 0, 34, 28)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_755ss"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(680, 0, 34, 28)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2n6q"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(714, 0, 34, 28)
@@ -47,14 +51,6 @@ region = Rect2(510, 0, 34, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8viyr"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(544, 0, 34, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bbimk"]
-atlas = ExtResource("5_sweqy")
-region = Rect2(272, 0, 34, 28)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_755ss"]
-atlas = ExtResource("5_sweqy")
-region = Rect2(680, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7emwf"]
 atlas = ExtResource("5_sweqy")
@@ -143,6 +139,14 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_755ss")
+}],
+"loop": false,
+"name": &"attack_dash",
+"speed": 4.0
+}, {
+"frames": [{
 "duration": 4.0,
 "texture": SubResource("AtlasTexture_j2n6q")
 }],
@@ -159,17 +163,6 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_dtilt",
-"speed": 4.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bbimk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_755ss")
-}],
-"loop": false,
-"name": &"attack_fspec",
 "speed": 4.0
 }, {
 "frames": [{
@@ -323,7 +316,7 @@ metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 [sub_resource type="Resource" id="Resource_pisgm"]
 script = ExtResource("8_n7ghd")
 scene = ExtResource("14_lfmf2")
-bind = 6
+bind = 1
 metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 
 [sub_resource type="Resource" id="Resource_b1ygp"]
@@ -363,7 +356,7 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_dspec"
+animation = &"attack_dash"
 autoplay = "idle"
 flip_h = true
 

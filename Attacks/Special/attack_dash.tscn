@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://o85h43h10uvv"]
 
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_7regj"]
-[ext_resource type="Script" uid="uid://b5vmrhleikfft" path="res://Attacks/Special/attack_f_spec.gd" id="2_sav3l"]
+[ext_resource type="Script" uid="uid://b5vmrhleikfft" path="res://Attacks/Special/attack_dash.gd" id="2_sav3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sav3l"]
 size = Vector2(20, 16)
@@ -17,7 +17,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.25),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -31,7 +31,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "values": [{
 "args": [],
@@ -59,9 +59,9 @@ _data = {
 &"start": SubResource("Animation_ktftk")
 }
 
-[node name="FSpec" instance=ExtResource("1_7regj")]
+[node name="Dash" instance=ExtResource("1_7regj")]
 script = ExtResource("2_sav3l")
-anim_name = &"attack_fspec"
+anim_name = &"attack_dash"
 
 [node name="Shape" parent="HitBox" index="0"]
 position = Vector2(-7.33333, 0)

@@ -52,13 +52,19 @@ func conditions() -> Array[bool]:
         AttackHandler.Binds.DSpec:
             key = &"special_attack"
 
-    return [
+    var conds: Array[bool] = [
         p.inp.is_action_pressed(key),
         p.is_on_floor(),
         p.state != Player.MoveState.None,
         ah.current_tilt == tilt,
         not $Anim.is_playing()
     ]
+    if bind == AttackHandler.Binds.Dash:
+        conds.push_back(p.hmove.running)
+    elif bind == AttackHandler.Binds.FTilt:
+        conds.push_back(not p.hmove.running)
+
+    return conds
 
 func conditions_met() -> bool:
     return conditions().all(func(c: bool) -> bool: return c)
