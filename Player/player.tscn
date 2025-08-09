@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=41 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://dej8xkwj66gk1" path="res://Player/vertical_movement.gd" id="3_i3pqv"]
@@ -41,6 +41,14 @@ region = Rect2(374, 0, 34, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_apopc"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(408, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76lrf"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(612, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_efx54"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(646, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gpjlu"]
 atlas = ExtResource("5_sweqy")
@@ -128,6 +136,17 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_jab",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76lrf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_efx54")
+}],
+"loop": false,
+"name": &"attack_nspec",
 "speed": 4.0
 }, {
 "frames": [{
@@ -254,8 +273,10 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"crouch"
+animation = &"attack_nspec"
 autoplay = "idle"
+frame = 1
+frame_progress = 1.0
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("5_2hs0m")

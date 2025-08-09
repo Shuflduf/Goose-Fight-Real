@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2nth4artgcuy"]
+
+[ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/attack.tscn" id="1_bv8r1"]
+
+[node name="NSpec" instance=ExtResource("1_bv8r1")]

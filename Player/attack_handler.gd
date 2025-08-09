@@ -11,6 +11,7 @@ enum Binds {
     FTilt,
     UTilt,
     DTilt,
+    NSpec,
 }
 enum Tilts {
     None,
@@ -37,9 +38,9 @@ func _unhandled_input(event: InputEvent) -> void:
         return
 
     for dir: StringName in dir_inputs.keys():
-        if p.inp.event_is_action_pressed(event, dir):
+        if p.inp.event_is_action_just_pressed(event, dir):
             dir_inputs[dir] = true
-        elif p.inp.event_is_action_released(event, dir):
+        elif p.inp.event_is_action_just_released(event, dir):
             dir_inputs[dir] = false
 
     update_tilt()

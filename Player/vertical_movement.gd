@@ -25,7 +25,7 @@ func _unhandled_input(event: InputEvent) -> void:
     if p.state == Player.MoveState.None:
          return
 
-    if p.inp.event_is_action_pressed(event, &"jump"):
+    if p.inp.event_is_action_just_pressed(event, &"jump"):
         if p.is_on_floor() or coyote_timer < MAX_COYOTE_TIME:
             jump_timer = 0.0
             coyote_timer = MAX_COYOTE_TIME
@@ -35,20 +35,20 @@ func _unhandled_input(event: InputEvent) -> void:
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
 
-    if p.inp.event_is_action_pressed(event, &"down") and not p.is_on_floor():
+    if p.inp.event_is_action_just_pressed(event, &"down") and not p.is_on_floor():
         p.collision_mask = 1
-    elif p.inp.event_is_action_released(event, &"down") and not p.is_on_floor():
+    elif p.inp.event_is_action_just_released(event, &"down") and not p.is_on_floor():
         p.collision_mask = 3
 
-    if jumping and p.inp.event_is_action_released(event, &"jump"):
+    if jumping and p.inp.event_is_action_just_released(event, &"jump"):
         apply_jump_vel(HOP_FORCE)
         jumping = false
 
-    if p.inp.event_is_action_released(event, &"down") and quick_drop_timer == 0.0:
+    if p.inp.event_is_action_just_released(event, &"down") and quick_drop_timer == 0.0:
         quick_drop_timer += 0.001
 
     if quick_drop_timer != 0.0:
-        if p.inp.event_is_action_pressed(event, &"down"):
+        if p.inp.event_is_action_just_pressed(event, &"down"):
             p.velocity.y = MAX_FALL
             p.collision_mask = 1
 
