@@ -19,7 +19,7 @@ tracks/0/keys = {
 "args": [],
 "method": &"spawn_vehicle"
 }, {
-"args": [],
+"args": [false],
 "method": &"leave"
 }]
 }

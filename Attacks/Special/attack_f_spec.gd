@@ -11,18 +11,21 @@ func _unhandled_input(event: InputEvent) -> void:
     if p.inp.event_is_action_just_pressed(event, &"jump"):
         leave()
 
-func leave() -> void:
+func leave(jump: bool = true) -> void:
     if not in_vehicle:
         return
 
     finished_early.emit()
     in_vehicle = false
-    # this is surely a good idea
-    p.position.y -= 20.0
+    if jump:
+        # this is surely a good idea
+        p.position.y -= 20.0
 
 func _physics_process(_delta: float) -> void:
     if in_vehicle:
         p.velocity.x = -SPEED * dir_mult()
+        if not p.is_on_floor():
+            leave(false)
 
 func spawn_vehicle() -> void:
     var new_vehicle: FSpecVehicle = vehicle_scene.instantiate()
