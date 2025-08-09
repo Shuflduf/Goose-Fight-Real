@@ -1,0 +1,15 @@
+extends Attack
+
+@export var bullet_scene: PackedScene
+
+func shoot() -> void:
+    p.velocity.x = dir_mult() * 500.0
+    var new_bullet: NSpecBullet = bullet_scene.instantiate()
+    add_child(new_bullet)
+    new_bullet.global_position = global_position
+    new_bullet.right = ah.facing_right
+    new_bullet.hit.connect(_on_bullet_hit)
+    new_bullet.p = p
+
+func _on_bullet_hit(data: DamageData, body: Player) -> void:
+    damage.emit(data, body)

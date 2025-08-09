@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjke6y6dg8xxk"]
+
+[ext_resource type="Script" uid="uid://bpoyoj2036v5a" path="res://Attacks/n_spec_bullet.gd" id="1_4r5ty"]
+[ext_resource type="Texture2D" uid="uid://3xqqed77bhqb" path="res://icon.svg" id="1_bqqrw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7ap6"]
+size = Vector2(24, 24)
+
+[node name="NSpecBullet" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_4r5ty")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_y7ap6")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.1875, 0.1875)
+texture = ExtResource("1_bqqrw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,5 +1,39 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2nth4artgcuy"]
+[gd_scene load_steps=6 format=3 uid="uid://d2nth4artgcuy"]
 
-[ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/attack.tscn" id="1_bv8r1"]
+[ext_resource type="PackedScene" uid="uid://bo4skdc2p1p24" path="res://Attacks/attack.tscn" id="1_bv8r1"]
+[ext_resource type="Script" uid="uid://bhv04kuqtiqnd" path="res://Attacks/attack_n_spec.gd" id="2_2g0qd"]
+[ext_resource type="PackedScene" uid="uid://cjke6y6dg8xxk" path="res://Attacks/n_spec_bullet.tscn" id="3_a3chy"]
+
+[sub_resource type="Animation" id="Animation_bv8r1"]
+resource_name = "start"
+length = 0.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2g0qd"]
+_data = {
+&"start": SubResource("Animation_bv8r1")
+}
 
 [node name="NSpec" instance=ExtResource("1_bv8r1")]
+script = ExtResource("2_2g0qd")
+bullet_scene = ExtResource("3_a3chy")
+anim_name = &"attack_nspec"
+
+[node name="Anim" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_2g0qd")
+}

@@ -25,8 +25,9 @@ func _unhandled_input(event: InputEvent) -> void:
             input_dir = roundf(event.axis_value)
 
 func _physics_process(delta: float) -> void:
-    if p.input_index == -1:
-        input_dir = Input.get_axis(&"left", &"right")
+    #if p.input_index == -1:
+        #input_dir = Input.get_axis(&"left", &"right")
+    input_dir = p.inp.get_axis(&"left", &"right")
 
     if p.state != p.MoveState.Both:
         input_dir = 0.0
