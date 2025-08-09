@@ -16,8 +16,9 @@ const AIR_ACCEL: float = 8.0
 var running: bool = false
 var run_timer: float = 0.0
 var last_run_dir: int = 0
-
 var input_dir: float = 0.0
+
+var movement_speed_mult: float = 1.0
 
 func _unhandled_input(event: InputEvent) -> void:
     if event is InputEventJoypadMotion and event.device == p.input_index:
@@ -52,10 +53,10 @@ func _physics_process(delta: float) -> void:
         running = false
 
     if running and input_dir:
-        p.velocity.x = input_dir * RUN_SPEED
+        p.velocity.x = input_dir * RUN_SPEED * movement_speed_mult
     else:
         var accel: float = GROUND_ACCEL if p.is_on_floor() else AIR_ACCEL
-        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED, delta * accel)
+        p.velocity.x = lerp(p.velocity.x, input_dir * WALK_SPEED * movement_speed_mult, delta * accel)
 
     sprite_flipping(current_dir)
     if p.is_on_floor():

@@ -375,7 +375,7 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_fspec"
+animation = &"flip"
 autoplay = "idle"
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
