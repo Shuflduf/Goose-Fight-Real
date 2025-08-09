@@ -3,11 +3,11 @@ extends Area2D
 
 signal hit(data: DamageData, body: Player)
 
-var right: bool = false
+var direction: Vector2 = Vector2.LEFT
 var p: Player
 
 func _physics_process(delta: float) -> void:
-    position.x += delta * (1.0 if right else -1.0) * 500.0
+    position += delta * direction * 500.0
 
 
 func _on_body_entered(body: Node2D) -> void:
