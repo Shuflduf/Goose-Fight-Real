@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://blruu806aguay"]
+
+[ext_resource type="PackedScene" uid="uid://bo4skdc2p1p24" path="res://Attacks/attack.tscn" id="1_le4nq"]
+[ext_resource type="Script" uid="uid://41gwntefwjkj" path="res://Attacks/Special/attack_d_spec.gd" id="2_8ilw3"]
+[ext_resource type="Texture2D" uid="uid://cnf3ypw4roup8" path="res://Sprites/pepsi.jpg" id="2_w44y0"]
+
+[sub_resource type="Animation" id="Animation_le4nq"]
+resource_name = "start"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PepsiParent/Pepsi:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -28.333), Vector2(0, -22)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PepsiParent/Pepsi:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.0293333, 0.0213334), Vector2(1e-05, 1e-05)]
+}
+
+[sub_resource type="Animation" id="Animation_w44y0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PepsiParent/Pepsi:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -28.333)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PepsiParent/Pepsi:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_w44y0"]
+_data = {
+&"RESET": SubResource("Animation_w44y0"),
+&"start": SubResource("Animation_le4nq")
+}
+
+[node name="DSpec" instance=ExtResource("1_le4nq")]
+script = ExtResource("2_8ilw3")
+anim_name = &"attack_dspec"
+
+[node name="Anim" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_w44y0")
+}
+
+[node name="PepsiParent" type="Node2D" parent="." index="1"]
+position = Vector2(-2.667, 0)
+
+[node name="Pepsi" type="Sprite2D" parent="PepsiParent" index="0"]
+position = Vector2(0, -28.333)
+rotation = 3.14159
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("2_w44y0")
