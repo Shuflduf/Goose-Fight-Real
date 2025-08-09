@@ -14,6 +14,7 @@ var bind: AttackHandler.Binds
 
 func start() -> void:
     started.emit(anim_name)
+    $Anim.play(&"start")
 
 func flip() -> void:
     pass
@@ -52,6 +53,7 @@ func conditions() -> Array[bool]:
         p.is_on_floor(),
         p.state != Player.MoveState.None,
         ah.current_tilt == tilt,
+        not $Anim.is_playing()
     ]
 
 func conditions_met() -> bool:

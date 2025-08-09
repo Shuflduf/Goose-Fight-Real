@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://o85h43h10uvv"]
+[gd_scene load_steps=6 format=3 uid="uid://o85h43h10uvv"]
 
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_7regj"]
 [ext_resource type="Script" uid="uid://b5vmrhleikfft" path="res://Attacks/Special/attack_f_spec.gd" id="2_sav3l"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sav3l"]
+size = Vector2(20, 16)
+
 [sub_resource type="Animation" id="Animation_ktftk"]
 resource_name = "start"
-length = 0.25
+length = 0.5
 step = 0.05
 tracks/0/type = "method"
 tracks/0/imported = false
@@ -21,6 +24,35 @@ tracks/0/keys = {
 "method": &"boost"
 }]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yafle"]
 _data = {
@@ -30,6 +62,10 @@ _data = {
 [node name="FSpec" instance=ExtResource("1_7regj")]
 script = ExtResource("2_sav3l")
 anim_name = &"attack_fspec"
+
+[node name="Shape" parent="HitBox" index="0"]
+position = Vector2(-7.33333, 0)
+shape = SubResource("RectangleShape2D_sav3l")
 
 [node name="Anim" parent="." index="1"]
 libraries = {

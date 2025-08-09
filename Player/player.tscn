@@ -306,7 +306,7 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_fspec"
+animation = &"attack_jab"
 autoplay = "idle"
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
@@ -324,12 +324,6 @@ attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResou
 sprites = NodePath("../Sprites")
 
 [node name="Jab" parent="Attacks" instance=ExtResource("9_nvl01")]
-
-[node name="FTilt" parent="Attacks" instance=ExtResource("10_apopc")]
-
-[node name="UTilt" parent="Attacks" instance=ExtResource("11_5htga")]
-
-[node name="DTilt" parent="Attacks" instance=ExtResource("12_p5o4e")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")

@@ -1,10 +1,7 @@
 extends BoringAttack
 
+func jump() -> void:
+    p.velocity.y = -300.0
+
 func fall() -> void:
     p.velocity.y = 400.0
-
-func _unhandled_input(event: InputEvent) -> void:
-    if conditions_met():
-        start()
-        p.velocity.y = -300.0
-        $Anim.play(&"start")
