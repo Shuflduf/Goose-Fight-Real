@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dwct0b3fqkr6c"]
 
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_r2krn"]
-[ext_resource type="Script" uid="uid://bbs3bd74xv2td" path="res://Attacks/attack_jab.gd" id="2_emekd"]
+[ext_resource type="Script" uid="uid://bbs3bd74xv2td" path="res://Attacks/Basic/attack_jab.gd" id="2_emekd"]
 
 [node name="Jab" instance=ExtResource("1_r2krn")]
 script = ExtResource("2_emekd")

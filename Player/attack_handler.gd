@@ -12,6 +12,9 @@ enum Binds {
     UTilt,
     DTilt,
     NSpec,
+    FSpec,
+    DSpec,
+    USpec,
 }
 enum Tilts {
     None,

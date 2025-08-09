@@ -43,6 +43,12 @@ func event_is_action_just_released(event: InputEvent, action: StringName) -> boo
     else:
         return false
 
+func is_action_pressed(action: StringName) -> bool:
+    # idfk this might be shit
+    return pressed_keys[action]
+    #else:
+        #return false
+
 func get_axis(left: StringName, right: StringName) -> float:
     var val: float = (-1.0 if pressed_keys[left] else 0.0) + (1.0 if pressed_keys[right] else 0.0)
     return val

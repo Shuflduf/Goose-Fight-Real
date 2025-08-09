@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://d2nth4artgcuy"]
 
 [ext_resource type="PackedScene" uid="uid://bo4skdc2p1p24" path="res://Attacks/attack.tscn" id="1_bv8r1"]
-[ext_resource type="Script" uid="uid://bhv04kuqtiqnd" path="res://Attacks/attack_n_spec.gd" id="2_2g0qd"]
-[ext_resource type="PackedScene" uid="uid://cjke6y6dg8xxk" path="res://Attacks/n_spec_bullet.tscn" id="3_a3chy"]
+[ext_resource type="Script" uid="uid://bhv04kuqtiqnd" path="res://Attacks/Special/attack_n_spec.gd" id="2_2g0qd"]
+[ext_resource type="PackedScene" uid="uid://cjke6y6dg8xxk" path="res://Attacks/Special/n_spec_bullet.tscn" id="3_a3chy"]
 
 [sub_resource type="Animation" id="Animation_bv8r1"]
 resource_name = "start"

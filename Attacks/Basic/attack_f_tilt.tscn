@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dlfd1q2hltgte"]
 
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_u2l5l"]
-[ext_resource type="Script" uid="uid://d1hwmyaagk8v" path="res://Attacks/attack_ftilt.gd" id="2_v3mub"]
+[ext_resource type="Script" uid="uid://d1hwmyaagk8v" path="res://Attacks/Basic/attack_f_tilt.gd" id="2_v3mub"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v3mub"]
 size = Vector2(18.6667, 6.66667)

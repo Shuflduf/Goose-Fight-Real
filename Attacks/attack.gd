@@ -5,8 +5,6 @@ signal started(anim_name: StringName)
 @warning_ignore("unused_signal")
 signal damage(data: DamageData, body: Player)
 
-@onready var handler: AttackHandler = get_parent()
-
 @export var anim_name: StringName
 
 var p: Player
@@ -21,15 +19,17 @@ func flip() -> void:
     pass
 
 func dir_mult() -> int:
-    return -1 if handler.facing_right else 1
+    return -1 if ah.facing_right else 1
 
-func conditions(event: InputEvent) -> Array[bool]:
+func conditions() -> Array[bool]:
     var key: StringName
     var tilt: AttackHandler.Tilts
     match bind:
-        AttackHandler.Binds.Jab:
+        AttackHandler.Binds.Jab, \
+        AttackHandler.Binds.NSpec:
             tilt = AttackHandler.Tilts.None
-        AttackHandler.Binds.FTilt:
+        AttackHandler.Binds.FTilt, \
+        AttackHandler.Binds.FSpec:
             tilt = AttackHandler.Tilts.Forward
         AttackHandler.Binds.UTilt:
             tilt = AttackHandler.Tilts.Up
@@ -41,21 +41,24 @@ func conditions(event: InputEvent) -> Array[bool]:
         AttackHandler.Binds.UTilt, \
         AttackHandler.Binds.DTilt:
             key = &"basic_attack"
-        AttackHandler.Binds.NSpec:
+        AttackHandler.Binds.NSpec, \
+        AttackHandler.Binds.FSpec, \
+        AttackHandler.Binds.USpec, \
+        AttackHandler.Binds.DSpec:
             key = &"special_attack"
 
     return [
-        p.inp.event_is_action_just_pressed(event, key),
+        p.inp.is_action_pressed(key),
         p.is_on_floor(),
         p.state != Player.MoveState.None,
         ah.current_tilt == tilt,
     ]
 
-func conditions_met(event: InputEvent) -> bool:
-    return conditions(event).all(func(c: bool) -> bool: return c)
+func conditions_met() -> bool:
+    return conditions().all(func(c: bool) -> bool: return c)
 
-func _unhandled_input(event: InputEvent) -> void:
-    if conditions_met(event):
+func _unhandled_input(_event: InputEvent) -> void:
+    if conditions_met():
         p.state = Player.MoveState.None
         start()
         $Anim.play(&"start")
