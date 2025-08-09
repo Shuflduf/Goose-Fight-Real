@@ -4,6 +4,9 @@ extends CharacterBody2D
 @onready var inp: InputHandler = $InputHandler
 
 @export var input_index: int = -1
+@export var color_map: ColorMap
+@export var scheme: ColorMap.VisualScheme
+
 
 enum MoveState {
     Both,
@@ -15,3 +18,9 @@ var state: MoveState = MoveState.Both
 
 func _physics_process(_delta: float) -> void:
     move_and_slide()
+
+func _ready() -> void:
+    var change_material: ShaderMaterial = $Sprites.material
+    var new_colors: ColorScheme = color_map.color_map[scheme]
+    change_material.set_shader_parameter(&"base", new_colors.base)
+    change_material.set_shader_parameter(&"secondary", new_colors.secondary)

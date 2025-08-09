@@ -95,3 +95,4 @@ position = Vector2(704, 488)
 [node name="Player" parent="." instance=ExtResource("2_tlwt5")]
 position = Vector2(968, 432)
 input_index = 0
+scheme = 1
