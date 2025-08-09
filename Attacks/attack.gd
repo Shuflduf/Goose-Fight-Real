@@ -30,14 +30,18 @@ func conditions() -> Array[bool]:
         AttackHandler.Binds.NSpec:
             tilt = AttackHandler.Tilts.None
         AttackHandler.Binds.FTilt, \
-        AttackHandler.Binds.FSpec:
+        AttackHandler.Binds.FSpec, \
+        AttackHandler.Binds.Dash:
             tilt = AttackHandler.Tilts.Forward
-        AttackHandler.Binds.UTilt:
+        AttackHandler.Binds.UTilt, \
+        AttackHandler.Binds.USpec:
             tilt = AttackHandler.Tilts.Up
-        AttackHandler.Binds.DTilt:
+        AttackHandler.Binds.DTilt, \
+        AttackHandler.Binds.DSpec:
             tilt = AttackHandler.Tilts.Down
     match bind:
         AttackHandler.Binds.Jab, \
+        AttackHandler.Binds.Dash, \
         AttackHandler.Binds.FTilt, \
         AttackHandler.Binds.UTilt, \
         AttackHandler.Binds.DTilt:

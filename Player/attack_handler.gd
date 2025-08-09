@@ -8,6 +8,7 @@ signal attack_started(anim_name: StringName)
 
 enum Binds {
     Jab,
+    Dash,
     FTilt,
     UTilt,
     DTilt,
@@ -66,7 +67,6 @@ func update_tilt() -> void:
         var dir: StringName = dir_map[tilt]
         if dir_inputs[dir]:
             pressed_dirs[tilt] = true
-    print(pressed_dirs)
 
     var vert_value: int = (-1 if pressed_dirs[Tilts.Up] else 0) + (1 if pressed_dirs[Tilts.Down] else 0)
     var vert_neutral: bool = vert_value == 0

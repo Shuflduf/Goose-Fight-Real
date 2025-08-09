@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://b0fsufejouwtq"]
+
+[ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_ic0u4"]
+[ext_resource type="Script" uid="uid://pk4muwetega2" path="res://Attacks/Special/attack_u_spec.gd" id="2_uhd6f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uhd6f"]
+size = Vector2(12, 13.3333)
+
+[sub_resource type="Animation" id="Animation_uhd6f"]
+resource_name = "start"
+length = 0.5
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"slow"
+}, {
+"args": [],
+"method": &"boost"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5uugl"]
+_data = {
+&"start": SubResource("Animation_uhd6f")
+}
+
+[node name="USpec" instance=ExtResource("1_ic0u4")]
+script = ExtResource("2_uhd6f")
+anim_name = &"attack_uspec"
+
+[node name="Shape" parent="HitBox" index="0"]
+position = Vector2(-2, -5.33333)
+shape = SubResource("RectangleShape2D_uhd6f")
+
+[node name="Anim" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_5uugl")
+}
