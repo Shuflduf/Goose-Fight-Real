@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_r2krn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vsi07"]
-size = Vector2(19.3333, 10.6667)
+size = Vector2(10.6667, 10.6667)
 
 [sub_resource type="Animation" id="Animation_uf0tv"]
 resource_name = "start"
@@ -47,9 +47,8 @@ _data = {
 anim_name = &"attack_jab"
 
 [node name="Shape" parent="HitBox" index="0"]
-position = Vector2(-2.33333, -2.66667)
+position = Vector2(-6.66667, -2.66667)
 shape = SubResource("RectangleShape2D_vsi07")
-debug_color = Color(0.955408, 1.05888e-06, 0.54337, 0.42)
 
 [node name="Anim" parent="." index="1"]
 libraries = {

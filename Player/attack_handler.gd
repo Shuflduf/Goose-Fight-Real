@@ -66,11 +66,12 @@ func update_tilt() -> void:
         var dir: StringName = dir_map[tilt]
         if dir_inputs[dir]:
             pressed_dirs[tilt] = true
+    print(pressed_dirs)
 
     var vert_value: int = (-1 if pressed_dirs[Tilts.Up] else 0) + (1 if pressed_dirs[Tilts.Down] else 0)
     var vert_neutral: bool = vert_value == 0
     current_tilt = Tilts.None if vert_neutral else (Tilts.Up if vert_value == -1 else Tilts.Down)
-    if p.is_on_floor() and pressed_dirs[Tilts.Forward]:
+    if pressed_dirs[Tilts.Forward]:
         current_tilt = Tilts.Forward
     elif not p.is_on_floor() and pressed_dirs[Tilts.Backward]:
         current_tilt = Tilts.Backward
