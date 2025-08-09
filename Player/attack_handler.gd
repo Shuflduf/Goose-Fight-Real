@@ -89,7 +89,7 @@ func _ready() -> void:
 
 func _on_attack_started(anim_name: StringName) -> void:
     attack_started.emit(anim_name)
-    p.state == Player.MoveState.None
+    p.state = Player.MoveState.None
 
 
 func _on_sprites_animation_finished() -> void:
