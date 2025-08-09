@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=59 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Resource" uid="uid://cevxedpjw068j" path="res://Player/main_color_map.tres" id="2_n471f"]
@@ -20,6 +20,7 @@
 [ext_resource type="PackedScene" uid="uid://o85h43h10uvv" path="res://Attacks/Special/attack_dash.tscn" id="14_lfmf2"]
 [ext_resource type="PackedScene" uid="uid://b0fsufejouwtq" path="res://Attacks/Special/attack_u_spec.tscn" id="15_pisgm"]
 [ext_resource type="PackedScene" uid="uid://blruu806aguay" path="res://Attacks/Special/attack_d_spec.tscn" id="16_b1ygp"]
+[ext_resource type="PackedScene" uid="uid://d2y05130b30b8" path="res://Attacks/Special/attack_f_spec.tscn" id="19_7emwf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(48, 48)
@@ -51,6 +52,10 @@ region = Rect2(510, 0, 34, 28)
 [sub_resource type="AtlasTexture" id="AtlasTexture_8viyr"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(544, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bbimk"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(748, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7emwf"]
 atlas = ExtResource("5_sweqy")
@@ -163,6 +168,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack_dtilt",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 4.0,
+"texture": SubResource("AtlasTexture_bbimk")
+}],
+"loop": false,
+"name": &"attack_fspec",
 "speed": 4.0
 }, {
 "frames": [{
@@ -331,6 +344,12 @@ scene = ExtResource("16_b1ygp")
 bind = 7
 metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 
+[sub_resource type="Resource" id="Resource_hshwv"]
+script = ExtResource("8_n7ghd")
+scene = ExtResource("19_7emwf")
+bind = 6
+metadata/_custom_type_script = "uid://cvqrmse7gdai4"
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 2
 collision_layer = 4
@@ -356,9 +375,8 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_dash"
+animation = &"attack_fspec"
 autoplay = "idle"
-flip_h = true
 
 [node name="AnimHandler" type="Node" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("5_2hs0m")
@@ -371,10 +389,8 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 
 [node name="Attacks" type="Node2D" parent="." node_paths=PackedStringArray("sprites")]
 script = ExtResource("7_b26j0")
-attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f")])
+attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv")])
 sprites = NodePath("../Sprites")
-
-[node name="DSpec" parent="Attacks" instance=ExtResource("16_b1ygp")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")

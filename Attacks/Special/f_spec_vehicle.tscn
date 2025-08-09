@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8xbt1sh6hv3t"]
+
+[ext_resource type="Script" uid="uid://dw3uqusrk3sue" path="res://Attacks/Special/f_spec_vehicle.gd" id="1_7bobx"]
+[ext_resource type="Texture2D" uid="uid://cd0k2gnb0230s" path="res://Sprites/vehicle.png" id="1_a2e1g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2e1g"]
+size = Vector2(88, 44)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bobx"]
+atlas = ExtResource("1_a2e1g")
+region = Rect2(0, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n0r7"]
+atlas = ExtResource("1_a2e1g")
+region = Rect2(34, 0, 34, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_egsyh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bobx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n0r7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="FSpecVehicle" type="CharacterBody2D"]
+top_level = true
+z_index = 4
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_7bobx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 2)
+shape = SubResource("RectangleShape2D_a2e1g")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -28)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_egsyh")
+autoplay = "default"
+frame_progress = 0.82576

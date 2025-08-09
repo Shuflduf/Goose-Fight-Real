@@ -3,6 +3,8 @@ extends Node2D
 
 signal started(anim_name: StringName)
 @warning_ignore("unused_signal")
+signal finished_early
+@warning_ignore("unused_signal")
 signal damage(data: DamageData, body: Player)
 
 @export var anim_name: StringName
@@ -10,7 +12,6 @@ signal damage(data: DamageData, body: Player)
 var p: Player
 var ah: AttackHandler
 var bind: AttackHandler.Binds
-#var facing_right: bool = false
 
 func start() -> void:
     started.emit(anim_name)
