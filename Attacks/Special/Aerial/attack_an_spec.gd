@@ -14,6 +14,8 @@ func shoot() -> void:
             continue
 
         target_dir = p.global_position.direction_to(b.global_position)
+        if target_dir.y > 0.0:
+            p.velocity.y = -200.0
         break
 
     p.velocity.x = dir_mult() * 500.0

@@ -505,9 +505,8 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_aftilt"
+animation = &"idle"
 autoplay = "idle"
-frame = 1
 
 [node name="VerticalMovement" type="Node" parent="." node_paths=PackedStringArray("h_movement")]
 script = ExtResource("3_i3pqv")
@@ -536,8 +535,6 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 script = ExtResource("7_b26j0")
 attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_d30e8"), SubResource("Resource_sm0op"), SubResource("Resource_76lrf")])
 sprites = NodePath("../Sprites")
-
-[node name="AFTilt" parent="Attacks" instance=ExtResource("26_sm0op")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")
