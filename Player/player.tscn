@@ -393,7 +393,6 @@ collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_onrkg")
 color_map = ExtResource("2_n471f")
-scheme = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fj7yv")
@@ -405,11 +404,6 @@ scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
 animation = &"attack_ntilt"
 autoplay = "idle"
-
-[node name="Attacks" type="Node2D" parent="." node_paths=PackedStringArray("sprites")]
-script = ExtResource("7_b26j0")
-attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6")])
-sprites = NodePath("../Sprites")
 
 [node name="VerticalMovement" type="Node" parent="." node_paths=PackedStringArray("h_movement")]
 script = ExtResource("3_i3pqv")
@@ -438,9 +432,13 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 script = ExtResource("14_gu6f8")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
 
+[node name="Attacks" type="Node2D" parent="." node_paths=PackedStringArray("sprites")]
+script = ExtResource("7_b26j0")
+attacks = Array[ExtResource("8_n7ghd")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6")])
+sprites = NodePath("../Sprites")
+
 [connection signal="animation_finished" from="Sprites" to="Attacks" method="_on_sprites_animation_finished"]
 [connection signal="animation_finished" from="Sprites" to="AnimHandler" method="_on_sprites_animation_finished"]
-[connection signal="attack_started" from="Attacks" to="AnimHandler" method="_on_attacks_attack_started"]
 [connection signal="jump_queued" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jump_queued"]
 [connection signal="jumped" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jumped"]
 [connection signal="didnt_move" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_didnt_move"]
@@ -448,3 +446,4 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 [connection signal="flip" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_flip"]
 [connection signal="moved" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_moved"]
 [connection signal="crouched" from="Crouch" to="AnimHandler" method="_on_crouch_crouched"]
+[connection signal="attack_started" from="Attacks" to="AnimHandler" method="_on_attacks_attack_started"]
