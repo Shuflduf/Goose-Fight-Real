@@ -86,6 +86,7 @@ func _ready() -> void:
     for a in attacks:
         var new_attack: Attack = a.scene.instantiate()
         add_child(new_attack)
+        new_attack.airial = a.airial
         new_attack.bind = a.bind
         new_attack.p = p
         new_attack.ah = self

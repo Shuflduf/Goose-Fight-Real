@@ -8,7 +8,6 @@ extends CharacterBody2D
 @export var color_map: ColorMap
 @export var scheme: ColorMap.VisualScheme
 
-
 enum MoveState {
     Both,
     VertOnly,

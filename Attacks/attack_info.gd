@@ -3,3 +3,4 @@ extends Resource
 
 @export var scene: PackedScene
 @export var bind: AttackHandler.Binds
+@export var airial: bool

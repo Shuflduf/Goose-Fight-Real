@@ -8,11 +8,17 @@ var in_vehicle: bool = false
 
 func _unhandled_input(event: InputEvent) -> void:
     super(event)
-    if p.inp.event_is_action_just_pressed(event, &"jump") and in_vehicle:
-        finished_early.emit()
-        in_vehicle = false
-        # this is surely a good idea
-        p.position.y -= 20.0
+    if p.inp.event_is_action_just_pressed(event, &"jump"):
+        leave()
+
+func leave() -> void:
+    if not in_vehicle:
+        return
+
+    finished_early.emit()
+    in_vehicle = false
+    # this is surely a good idea
+    p.position.y -= 20.0
 
 func _physics_process(_delta: float) -> void:
     if in_vehicle:

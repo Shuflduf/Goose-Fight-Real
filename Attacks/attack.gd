@@ -12,6 +12,7 @@ signal damage(data: DamageData, body: Player)
 var p: Player
 var ah: AttackHandler
 var bind: AttackHandler.Binds
+var airial: bool
 
 func start() -> void:
     started.emit(anim_name)
@@ -55,11 +56,12 @@ func conditions() -> Array[bool]:
 
     var conds: Array[bool] = [
         p.inp.is_action_pressed(key),
-        p.is_on_floor(),
         p.state != Player.MoveState.None,
         ah.current_tilt == tilt,
+        p.is_on_floor() != airial,
         not $Anim.is_playing()
     ]
+
     if bind == AttackHandler.Binds.Dash:
         conds.push_back(p.hmove.running)
     elif bind == AttackHandler.Binds.FTilt:
