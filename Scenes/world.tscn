@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cb26isyjfuqo1"]
+[gd_scene load_steps=16 format=3 uid="uid://cb26isyjfuqo1"]
 
 [ext_resource type="Script" uid="uid://bpco7b0p1uaxn" path="res://Scenes/world.gd" id="1_036b0"]
 [ext_resource type="PackedScene" uid="uid://difolhje4qshv" path="res://Player/player.tscn" id="2_tlwt5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bnxos6ffnfhr2" path="res://Sprites/roa.png" id="3_tlwt5"]
 [ext_resource type="Texture2D" uid="uid://bnlyeivt0qw2a" path="res://Sprites/arena_bg.png" id="4_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bfi48noj1apfs" path="res://Arena/health_indicator.tscn" id="6_5ukr8"]
+[ext_resource type="Script" uid="uid://dl6fvn6gksv6p" path="res://Arena/killzones.gd" id="7_o06y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
 size = Vector2(768, 252)
@@ -21,6 +22,21 @@ b = Vector2(500, -24)
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dwbse"]
 a = Vector2(-124, -176)
 b = Vector2(124, -176)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5ukr8"]
+normal = Vector2(0, 1)
+distance = -400.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o06y3"]
+distance = -400.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k7acu"]
+normal = Vector2(1, 0)
+distance = -700.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5v1tr"]
+normal = Vector2(-1, 0)
+distance = -700.0
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_036b0")
@@ -92,6 +108,25 @@ collision_mask = 0
 shape = SubResource("SegmentShape2D_dwbse")
 one_way_collision = true
 
+[node name="Killzones" type="Area2D" parent="Arena"]
+position = Vector2(700, 400)
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("7_o06y3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/Killzones"]
+shape = SubResource("WorldBoundaryShape2D_5ukr8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Arena/Killzones"]
+shape = SubResource("WorldBoundaryShape2D_o06y3")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Arena/Killzones"]
+shape = SubResource("WorldBoundaryShape2D_k7acu")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Arena/Killzones"]
+shape = SubResource("WorldBoundaryShape2D_5v1tr")
+
 [node name="SpawnPos" type="Node2D" parent="."]
 position = Vector2(704, 488)
 
@@ -126,3 +161,5 @@ alignment = 1
 [node name="HealthIndicator" parent="CanvasLayer/UI/Indicators" instance=ExtResource("6_5ukr8")]
 layout_mode = 2
 scheme = 1
+
+[connection signal="body_entered" from="Arena/Killzones" to="Arena/Killzones" method="_on_body_entered"]
