@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdxga4n34q4ic"]
+
+[ext_resource type="PackedScene" uid="uid://bo4skdc2p1p24" path="res://Attacks/attack.tscn" id="1_l7top"]
+[ext_resource type="Script" uid="uid://cy5r2p2123jtk" path="res://Attacks/Special/Aerial/attack_ad_spec.gd" id="2_nwgad"]
+[ext_resource type="PackedScene" uid="uid://7p1tihc1vmas" path="res://Attacks/Special/Aerial/ad_spec_bomb.tscn" id="3_46mo0"]
+
+[sub_resource type="Animation" id="Animation_l7top"]
+resource_name = "start"
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawn_bomb"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nwgad"]
+_data = {
+&"start": SubResource("Animation_l7top")
+}
+
+[node name="ADSpec" instance=ExtResource("1_l7top")]
+script = ExtResource("2_nwgad")
+bomb_scene = ExtResource("3_46mo0")
+anim_name = &"attack_adspec"
+
+[node name="Anim" parent="." index="0"]
+libraries = {
+&"": SubResource("AnimationLibrary_nwgad")
+}

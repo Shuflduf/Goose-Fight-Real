@@ -17,6 +17,7 @@ enum Binds {
     DSpec,
     USpec,
     BTilt,
+    BSpec,
 }
 enum Tilts {
     None,
