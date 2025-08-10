@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var player_scene: PackedScene
+@export var health_indicator_scene: PackedScene
 
 var registered_devices: Array[int] = []
 
@@ -19,5 +20,12 @@ func spawn_player(input_index: int) -> void:
     new_player.position = $SpawnPos.position
     new_player.input_index = input_index
     add_child(new_player)
+
+    var new_health_indic: HealthIndicator = health_indicator_scene.instantiate()
+    %Indicators.add_child(new_health_indic)
+    new_player.health_indicator = new_health_indic
+    # make sure to set the color scheme here
+
+
 #func _physics_process(delta: float) -> void:
     #%Cam.position.x = sin(Time.get_ticks_msec() / 500.0) * 100.0

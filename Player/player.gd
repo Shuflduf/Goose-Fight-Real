@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var input_index: int = -1
 @export var color_map: ColorMap
 @export var scheme: ColorMap.VisualScheme
+@export var health_indicator: HealthIndicator
 
 enum MoveState {
     Both,
@@ -17,6 +18,7 @@ enum MoveState {
 }
 
 var state: MoveState = MoveState.Both
+var health: int = 0
 
 func _physics_process(_delta: float) -> void:
     move_and_slide()
