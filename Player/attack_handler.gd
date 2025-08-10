@@ -3,7 +3,7 @@ extends PlayerComponent
 
 signal attack_started(anim_name: StringName)
 
-@export var attacks: Array[AttackInfo]
+@export var attacks: AttackSet
 @export var sprites: AnimatedSprite2D
 
 enum Binds {
@@ -84,7 +84,7 @@ func _ready() -> void:
     for c in get_children():
         c.free()
     await get_tree().physics_frame
-    for a in attacks:
+    for a in attacks.attacks:
         var new_attack: Attack = a.scene.instantiate()
         add_child(new_attack)
         new_attack.aerial = a.aerial
