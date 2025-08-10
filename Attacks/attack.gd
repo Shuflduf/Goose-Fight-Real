@@ -64,6 +64,7 @@ func conditions() -> Array[bool]:
         p.state != Player.MoveState.None,
         ah.current_tilt == tilt,
         p.is_on_floor() != aerial,
+        not p.vmove.jumping,
         not $Anim.is_playing()
     ]
 

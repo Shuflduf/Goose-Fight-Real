@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 @onready var inp: InputHandler = $InputHandler
 @onready var hmove: PHorizMovement = $HorizontalMovement
+@onready var vmove: PVertMovement = $VerticalMovement
+
 
 @export var input_index: int = -1
 @export var color_map: ColorMap

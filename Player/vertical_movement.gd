@@ -1,3 +1,4 @@
+class_name PVertMovement
 extends PlayerComponent
 
 signal jump_queued
