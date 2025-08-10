@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="AttackSet" load_steps=37 format=3 uid="uid://bl10p7n4y537l"]
+[gd_resource type="Resource" script_class="AttackSet" load_steps=39 format=3 uid="uid://bl10p7n4y537l"]
 
 [ext_resource type="Script" uid="uid://cvqrmse7gdai4" path="res://Attacks/attack_info.gd" id="1_pdc6w"]
 [ext_resource type="PackedScene" uid="uid://dwct0b3fqkr6c" path="res://Attacks/Basic/attack_n_tilt.tscn" id="2_2jtei"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bg8vs0duq5xkn" path="res://Attacks/Special/Aerial/attack_an_spec.tscn" id="15_nvt7v"]
 [ext_resource type="PackedScene" uid="uid://ygi3d771jdv" path="res://Attacks/Basic/Aerial/attack_af_tilt.tscn" id="16_g3ffh"]
 [ext_resource type="PackedScene" uid="uid://bdxga4n34q4ic" path="res://Attacks/Special/Aerial/attack_ad_spec.tscn" id="17_n8sdp"]
+[ext_resource type="PackedScene" uid="uid://uo58x2gt1sn0" path="res://Attacks/Special/Aerial/attack_ab_spec.tscn" id="18_2jtei"]
 [ext_resource type="Script" uid="uid://cqep1b6n0ubei" path="res://Attacks/attack_set.gd" id="18_pn7mi"]
 
 [sub_resource type="Resource" id="Resource_ivps1"]
@@ -145,6 +146,13 @@ bind = 7
 aerial = true
 metadata/_custom_type_script = "uid://cvqrmse7gdai4"
 
+[sub_resource type="Resource" id="Resource_5dj48"]
+script = ExtResource("1_pdc6w")
+scene = ExtResource("18_2jtei")
+bind = 10
+aerial = true
+metadata/_custom_type_script = "uid://cvqrmse7gdai4"
+
 [resource]
 script = ExtResource("18_pn7mi")
-attacks = Array[ExtResource("1_pdc6w")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_d30e8"), SubResource("Resource_sm0op"), SubResource("Resource_76lrf"), SubResource("Resource_efx54"), SubResource("Resource_755ss")])
+attacks = Array[ExtResource("1_pdc6w")]([SubResource("Resource_ivps1"), SubResource("Resource_o28un"), SubResource("Resource_p5o4e"), SubResource("Resource_gu6f8"), SubResource("Resource_lfmf2"), SubResource("Resource_pisgm"), SubResource("Resource_b1ygp"), SubResource("Resource_n471f"), SubResource("Resource_hshwv"), SubResource("Resource_7emwf"), SubResource("Resource_8mwp6"), SubResource("Resource_qemgg"), SubResource("Resource_8viyr"), SubResource("Resource_d30e8"), SubResource("Resource_sm0op"), SubResource("Resource_76lrf"), SubResource("Resource_efx54"), SubResource("Resource_755ss"), SubResource("Resource_5dj48")])

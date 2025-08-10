@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://uo58x2gt1sn0"]
+
+[ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_shqoh"]
+[ext_resource type="Script" uid="uid://cb7wywberb4pe" path="res://Attacks/Special/Aerial/attack_ab_spec.gd" id="2_jaxkb"]
+[ext_resource type="Texture2D" uid="uid://cnf3ypw4roup8" path="res://Sprites/pepsi.jpg" id="3_ym7tm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ym7tm"]
+size = Vector2(26.5083, 10.0776)
+
+[sub_resource type="Animation" id="Animation_shqoh"]
+resource_name = "start"
+step = 0.05
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"start_particles"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"swing"
+}, {
+"args": [],
+"method": &"stop_particles"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jaxkb"]
+_data = {
+&"start": SubResource("Animation_shqoh")
+}
+
+[sub_resource type="Curve" id="Curve_shqoh"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.632653, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_jaxkb"]
+curve = SubResource("Curve_shqoh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_shqoh"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+direction = Vector3(1, 0.515, 0)
+spread = 15.0
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+gravity = Vector3(0, 0, 0)
+scale_min = 3.0
+scale_max = 7.0
+scale_curve = SubResource("CurveTexture_jaxkb")
+color = Color(0.469729, 0.34888, 0.476646, 1)
+
+[node name="ABSpec" instance=ExtResource("1_shqoh")]
+script = ExtResource("2_jaxkb")
+anim_name = &"attack_abspec"
+
+[node name="Shape" parent="HitBox" index="0"]
+position = Vector2(34.9978, 13.5967)
+rotation = 0.523598
+shape = SubResource("RectangleShape2D_ym7tm")
+
+[node name="Anim" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_jaxkb")
+}
+
+[node name="Visuals" type="Node2D" parent="." index="2"]
+
+[node name="Particles" type="GPUParticles2D" parent="Visuals" index="0"]
+unique_name_in_owner = true
+z_index = -1
+position = Vector2(23, 6.66667)
+emitting = false
+amount = 32
+lifetime = 0.3
+process_material = SubResource("ParticleProcessMaterial_shqoh")
+
+[node name="Bottle" type="Sprite2D" parent="Visuals" index="1"]
+unique_name_in_owner = true
+visible = false
+position = Vector2(15.3333, 2.33333)
+rotation = 2.09439
+scale = Vector2(0.01, 0.0186667)
+texture = ExtResource("3_ym7tm")

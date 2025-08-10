@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=52 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Resource" uid="uid://cevxedpjw068j" path="res://Player/main_color_map.tres" id="2_n471f"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://b77con38nd63l" path="res://Player/attack_handler.gd" id="7_b26j0"]
 [ext_resource type="Resource" uid="uid://bl10p7n4y537l" path="res://Attacks/main_attack_set.tres" id="11_5htga"]
 [ext_resource type="Script" uid="uid://euqlrk38ot1c" path="res://Player/input_handler.gd" id="11_apopc"]
+[ext_resource type="PackedScene" uid="uid://uo58x2gt1sn0" path="res://Attacks/Special/Aerial/attack_ab_spec.tscn" id="12_p5o4e"]
 [ext_resource type="Script" uid="uid://5bumq6m7sqfd" path="res://Player/crouch.gd" id="14_gu6f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
@@ -27,6 +28,10 @@ shader_parameter/og_secondary = Color(0.662745, 0.231373, 0.231373, 1)
 [sub_resource type="AtlasTexture" id="AtlasTexture_x3vf3"]
 atlas = ExtResource("5_sweqy")
 region = Rect2(136, 0, 34, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dy65m"]
+atlas = ExtResource("5_sweqy")
+region = Rect2(986, 0, 34, 28)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jp1hh"]
 atlas = ExtResource("5_sweqy")
@@ -168,6 +173,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"air",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dy65m")
+}],
+"loop": false,
+"name": &"attack_abspec",
 "speed": 4.0
 }, {
 "frames": [{
@@ -390,7 +403,7 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_adspec"
+animation = &"attack_abspec"
 autoplay = "idle"
 
 [node name="VerticalMovement" type="Node" parent="." node_paths=PackedStringArray("h_movement")]
@@ -420,6 +433,8 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 script = ExtResource("7_b26j0")
 attacks = ExtResource("11_5htga")
 sprites = NodePath("../Sprites")
+
+[node name="ABSpec" parent="Attacks" instance=ExtResource("12_p5o4e")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")
