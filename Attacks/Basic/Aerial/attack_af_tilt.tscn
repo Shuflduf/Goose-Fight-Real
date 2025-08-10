@@ -46,6 +46,7 @@ _data = {
 
 [node name="AFTilt" instance=ExtResource("1_khi83")]
 script = ExtResource("2_ero4a")
+knockback = Vector2(400, -600)
 anim_name = &"attack_aftilt"
 
 [node name="Shape" parent="HitBox" index="0"]

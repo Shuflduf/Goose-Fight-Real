@@ -4,7 +4,7 @@ extends CharacterBody2D
 @onready var inp: InputHandler = $InputHandler
 @onready var hmove: PHorizMovement = $HorizontalMovement
 @onready var vmove: PVertMovement = $VerticalMovement
-
+@onready var hit_handler: PHitHandler = $HitHandler
 
 @export var input_index: int = -1
 @export var color_map: ColorMap
@@ -26,3 +26,6 @@ func _ready() -> void:
     var new_colors: ColorScheme = color_map.color_map[scheme]
     change_material.set_shader_parameter(&"base", new_colors.base)
     change_material.set_shader_parameter(&"secondary", new_colors.secondary)
+
+func hit(data: DamageData) -> void:
+    hit_handler.process_hit(data)

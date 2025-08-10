@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://o85h43h10uvv"]
 
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_7regj"]
-[ext_resource type="Script" uid="uid://b5vmrhleikfft" path="res://Attacks/Special/attack_dash.gd" id="2_sav3l"]
+[ext_resource type="Script" uid="uid://b5vmrhleikfft" path="res://Attacks/Basic/attack_dash.gd" id="2_sav3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sav3l"]
 size = Vector2(20, 16)
@@ -61,6 +61,8 @@ _data = {
 
 [node name="Dash" instance=ExtResource("1_7regj")]
 script = ExtResource("2_sav3l")
+health = 3
+knockback = Vector2(200, -500)
 anim_name = &"attack_dash"
 
 [node name="Shape" parent="HitBox" index="0"]

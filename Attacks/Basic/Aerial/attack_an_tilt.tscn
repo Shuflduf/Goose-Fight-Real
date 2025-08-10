@@ -3,4 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://dwct0b3fqkr6c" path="res://Attacks/Basic/attack_n_tilt.tscn" id="1_enqcb"]
 
 [node name="ANTilt" instance=ExtResource("1_enqcb")]
+knockback = Vector2(100, -100)
 anim_name = &"attack_antilt"

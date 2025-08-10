@@ -35,6 +35,7 @@ _data = {
 
 [node name="UTilt" instance=ExtResource("1_8dej2")]
 script = ExtResource("2_oad21")
+knockback = Vector2(0, -500)
 anim_name = &"attack_utilt"
 
 [node name="Shape" parent="HitBox" index="0"]

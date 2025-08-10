@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpojwfmekdy3y" path="res://Attacks/Basic/attack_u_tilt.tscn" id="4_tj7mi"]
 [ext_resource type="PackedScene" uid="uid://kasw83peblv5" path="res://Attacks/Basic/attack_d_tilt.tscn" id="5_5k52c"]
 [ext_resource type="PackedScene" uid="uid://d2nth4artgcuy" path="res://Attacks/Special/attack_n_spec.tscn" id="6_fmnmt"]
-[ext_resource type="PackedScene" uid="uid://o85h43h10uvv" path="res://Attacks/Special/attack_dash.tscn" id="7_sdpmv"]
+[ext_resource type="PackedScene" uid="uid://o85h43h10uvv" path="res://Attacks/Basic/attack_dash.tscn" id="7_sdpmv"]
 [ext_resource type="PackedScene" uid="uid://b0fsufejouwtq" path="res://Attacks/Special/attack_u_spec.tscn" id="8_h2mlt"]
 [ext_resource type="PackedScene" uid="uid://blruu806aguay" path="res://Attacks/Special/attack_d_spec.tscn" id="9_sl136"]
 [ext_resource type="PackedScene" uid="uid://d2y05130b30b8" path="res://Attacks/Special/attack_f_spec.tscn" id="10_ldsay"]

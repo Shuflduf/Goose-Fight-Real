@@ -3,8 +3,8 @@
 [ext_resource type="PackedScene" uid="uid://ddfmqiyr3nc4m" path="res://Attacks/boring_attack.tscn" id="1_j638v"]
 [ext_resource type="Script" uid="uid://di7ji7ujl5dpe" path="res://Attacks/Basic/attack_d_tilt.gd" id="2_1mx4y"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mx4y"]
-size = Vector2(24, 5.33333)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oyg2c"]
+size = Vector2(24, 9.66667)
 
 [sub_resource type="Animation" id="Animation_j638v"]
 resource_name = "start"
@@ -38,11 +38,12 @@ _data = {
 
 [node name="DTilt" instance=ExtResource("1_j638v")]
 script = ExtResource("2_1mx4y")
+knockback = Vector2(0, -600)
 anim_name = &"attack_dtilt"
 
 [node name="Shape" parent="HitBox" index="0"]
-position = Vector2(1.33333, 5.33333)
-shape = SubResource("RectangleShape2D_1mx4y")
+position = Vector2(1.33333, 7.5)
+shape = SubResource("RectangleShape2D_oyg2c")
 
 [node name="Anim" parent="." index="1"]
 libraries = {
