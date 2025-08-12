@@ -16,6 +16,7 @@ extends CharacterBody2D
 enum MoveState {
     Both,
     VertOnly,
+    Stunned,
     None,
 }
 
@@ -26,7 +27,7 @@ func _physics_process(_delta: float) -> void:
     move_and_slide()
 
 func _ready() -> void:
-    var change_material: ShaderMaterial = $Sprites.material
+    var change_material: ShaderMaterial = %Sprites.material
     var new_colors: ColorScheme = color_map.color_map[scheme]
     change_material.set_shader_parameter(&"base", new_colors.base)
     change_material.set_shader_parameter(&"secondary", new_colors.secondary)

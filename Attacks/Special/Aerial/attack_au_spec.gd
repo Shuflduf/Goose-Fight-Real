@@ -6,6 +6,7 @@ const FAILED_BOOST_STRENGTH: float = -300.0
 var can_boost: bool = true
 
 func boost() -> void:
+    #p.hmove.flip.emit(p.inp.get_axis(&"left", &"right"))
     if can_boost:
         p.velocity.y = AIR_BOOST_STRENGTH
         p.velocity.x = -200.0 * dir_mult()

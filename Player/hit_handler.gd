@@ -6,3 +6,4 @@ func process_hit(data: DamageData) -> void:
     p.velocity = data.knockback * (0.005 * p.health + 1)
     p.health += data.health
     p.health_indicator.value = p.health
+    p.state = p.MoveState.Stunned

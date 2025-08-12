@@ -7,9 +7,11 @@ uniform vec3 og_secondary: source_color;
 
 void fragment() {
 	if (distance(texture(TEXTURE, UV).rgb, og_base) < 0.01) {
-        COLOR.rgb = base;
+        vec3 diff = og_base - COLOR.rgb;
+        COLOR.rgb = base - diff;
     }
     if (distance(texture(TEXTURE, UV).rgb, og_secondary) < 0.01) {
-        COLOR.rgb = secondary;
+        vec3 diff = og_secondary - COLOR.rgb;
+        COLOR.rgb = secondary - diff;
     }
 }
