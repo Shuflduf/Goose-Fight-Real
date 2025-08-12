@@ -187,7 +187,7 @@ animations = [{
 "duration": 0.7,
 "texture": SubResource("AtlasTexture_jp1hh")
 }, {
-"duration": 1.0,
+"duration": 0.7,
 "texture": SubResource("AtlasTexture_qs4pp")
 }, {
 "duration": 0.7,
@@ -217,7 +217,7 @@ animations = [{
 "speed": 4.0
 }, {
 "frames": [{
-"duration": 1.0,
+"duration": 0.8,
 "texture": SubResource("AtlasTexture_d30e8")
 }, {
 "duration": 1.0,
@@ -403,8 +403,10 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_abspec"
+animation = &"attack_abtilt"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="HitHandler" type="Node" parent="."]
 script = ExtResource("5_p5o4e")

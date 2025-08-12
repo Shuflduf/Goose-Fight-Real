@@ -9,19 +9,19 @@
 [ext_resource type="Script" uid="uid://dl6fvn6gksv6p" path="res://Arena/killzones.gd" id="7_o06y3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_036b0"]
-size = Vector2(768, 252)
+size = Vector2(616, 416)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_aqk2v"]
-a = Vector2(-500, -24)
-b = Vector2(-252, -24)
+a = Vector2(-416, -4)
+b = Vector2(-220, -4)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_036b0"]
-a = Vector2(252, -24)
-b = Vector2(500, -24)
+a = Vector2(220, -4)
+b = Vector2(416, -4)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_dwbse"]
-a = Vector2(-124, -176)
-b = Vector2(124, -176)
+a = Vector2(-100, -160)
+b = Vector2(96, -160)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5ukr8"]
 normal = Vector2(0, 1)
@@ -87,8 +87,7 @@ position = Vector2(700, 400)
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Arena/StaticBody2D2"]
-visible = false
-position = Vector2(0, 274)
+position = Vector2(0, 356)
 shape = SubResource("RectangleShape2D_036b0")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="Arena"]
