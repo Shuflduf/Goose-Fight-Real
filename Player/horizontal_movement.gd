@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
             running = true
             run_timer = 0.0
 
-    if run_timer > RUN_WINDOW or not p.is_on_floor():
+    if run_timer > RUN_WINDOW:
         run_timer = 0.0
         last_run_dir = 0
         running = false
@@ -68,6 +68,9 @@ func _physics_process(delta: float) -> void:
 
 func sprite_flipping(dir: int) -> void:
     if dir != 0:
-        if p.is_on_floor():
+        if p.is_on_floor() or running:
             #sprites.flip_h =
             flip.emit(dir == 1)
+            if not p.is_on_floor():
+                running = false
+        #elif running:
