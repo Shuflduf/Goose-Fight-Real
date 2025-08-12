@@ -32,7 +32,7 @@ func _unhandled_input(event: InputEvent) -> void:
             coyote_timer = MAX_COYOTE_TIME
             jumping = true
             jump_queued.emit()
-        elif has_double_jump:
+        elif has_double_jump and not p.is_on_wall():
             apply_jump_vel(JUMP_FORCE)
             has_double_jump = false
 
