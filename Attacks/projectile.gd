@@ -16,3 +16,7 @@ func _on_area_body_entered(body: Node2D) -> void:
 
 func explode() -> void:
     queue_free()
+
+
+func _on_despawn_timer_timeout() -> void:
+    queue_free()
