@@ -61,7 +61,7 @@ func conditions() -> Array[bool]:
 
     var conds: Array[bool] = [
         p.inp.is_action_pressed(key),
-        p.state != Player.MoveState.None,
+        p.state not in [Player.MoveState.None, Player.MoveState.Stunned],
         ah.current_tilt == tilt,
         p.is_on_floor() != aerial,
         not p.vmove.jumping,
