@@ -25,18 +25,18 @@ b = Vector2(96, -160)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5ukr8"]
 normal = Vector2(0, 1)
-distance = -400.0
+distance = -600.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_o06y3"]
-distance = -400.0
+distance = -600.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_k7acu"]
 normal = Vector2(1, 0)
-distance = -700.0
+distance = -900.0
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_5v1tr"]
 normal = Vector2(-1, 0)
-distance = -700.0
+distance = -900.0
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_036b0")
