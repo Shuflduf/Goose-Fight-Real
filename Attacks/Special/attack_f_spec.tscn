@@ -32,6 +32,8 @@ _data = {
 [node name="FSpec" instance=ExtResource("1_7regj")]
 script = ExtResource("2_sav3l")
 vehicle_scene = ExtResource("3_22jj4")
+health = 4
+knockback = Vector2(-600, -200)
 anim_name = &"attack_fspec"
 
 [node name="Anim" parent="." index="0"]
