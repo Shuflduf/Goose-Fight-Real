@@ -55,6 +55,14 @@ z_index = 1
 scale = Vector2(0.605, 0.605)
 texture = ExtResource("3_tlwt5")
 
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Player" parent="Players" node_paths=PackedStringArray("health_indicator") instance=ExtResource("2_tlwt5")]
+position = Vector2(968, 432)
+input_index = 0
+scheme = 1
+health_indicator = NodePath("../../CanvasLayer/UI/Indicators/HealthIndicator")
+
 [node name="Arena" type="Node2D" parent="."]
 
 [node name="Arena" type="Sprite2D" parent="Arena"]
@@ -130,12 +138,6 @@ shape = SubResource("WorldBoundaryShape2D_5v1tr")
 [node name="SpawnPos" type="Node2D" parent="."]
 position = Vector2(704, 488)
 
-[node name="Player" parent="." node_paths=PackedStringArray("health_indicator") instance=ExtResource("2_tlwt5")]
-position = Vector2(968, 432)
-input_index = 0
-scheme = 1
-health_indicator = NodePath("../CanvasLayer/UI/Indicators/HealthIndicator")
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" type="Control" parent="CanvasLayer"]
@@ -161,5 +163,8 @@ alignment = 1
 [node name="HealthIndicator" parent="CanvasLayer/UI/Indicators" instance=ExtResource("6_5ukr8")]
 layout_mode = 2
 scheme = 1
+
+[node name="CenterPos" type="Node2D" parent="."]
+position = Vector2(700, 400)
 
 [connection signal="body_entered" from="Arena/Killzones" to="Arena/Killzones" method="_on_body_entered"]

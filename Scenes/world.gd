@@ -5,6 +5,19 @@ extends Node2D
 
 var registered_devices: Array[int] = []
 
+func _physics_process(delta: float) -> void:
+    var positions: Array = $Players.get_children().map(
+        func(p: Player) -> Vector2:
+            return p.position
+    )
+
+    var average: Vector2 = positions.reduce(
+        func(accum: Vector2, v: Vector2) -> Vector2:
+            return accum + v
+    ) / positions.size()
+
+    %Cam.position = average - $CenterPos.position
+
 func _unhandled_input(event: InputEvent) -> void:
     var is_controller: bool = event is InputEventJoypadButton or event is InputEventJoypadMotion
     if event is InputEventKey and not registered_devices.has(-1):
@@ -19,7 +32,7 @@ func spawn_player(input_index: int) -> void:
     var new_player: Player = player_scene.instantiate()
     new_player.position = $SpawnPos.position
     new_player.input_index = input_index
-    add_child(new_player)
+    $Players.add_child(new_player)
 
     var new_health_indic: HealthIndicator = health_indicator_scene.instantiate()
     %Indicators.add_child(new_health_indic)
