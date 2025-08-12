@@ -5,18 +5,19 @@ extends Node2D
 
 var registered_devices: Array[int] = []
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
     var positions: Array = $Players.get_children().map(
         func(p: Player) -> Vector2:
             return p.position
     )
+    positions.append($CenterPos.position)
 
     var average: Vector2 = positions.reduce(
         func(accum: Vector2, v: Vector2) -> Vector2:
             return accum + v
     ) / positions.size()
 
-    %Cam.position = average - $CenterPos.position
+    %Cam.position = average - $CenterPos.position + Vector2(0.0, -80.0)
 
 func _unhandled_input(event: InputEvent) -> void:
     var is_controller: bool = event is InputEventJoypadButton or event is InputEventJoypadMotion

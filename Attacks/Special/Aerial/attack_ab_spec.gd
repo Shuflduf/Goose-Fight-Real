@@ -16,4 +16,5 @@ func _physics_process(delta: float) -> void:
         p.velocity.y = -100.0
 
 func flip() -> void:
+    $HitBox.scale.x = dir_mult()
     $Visuals.scale.x = dir_mult()

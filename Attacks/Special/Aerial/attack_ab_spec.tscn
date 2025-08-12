@@ -79,6 +79,7 @@ anim_name = &"attack_abspec"
 position = Vector2(34.9978, 13.5967)
 rotation = 0.523598
 shape = SubResource("RectangleShape2D_ym7tm")
+debug_color = Color(0.985352, 0, 0.33462, 0.42)
 
 [node name="Anim" parent="." index="1"]
 libraries = {
