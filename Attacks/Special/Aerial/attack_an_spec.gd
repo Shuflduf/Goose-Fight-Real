@@ -8,20 +8,20 @@ func flip() -> void:
     %CollShape.polygon[1].x = new_pos
 
 func shoot() -> void:
+    var proj_data: DamageData = DamageData.new()
+    proj_data.health = 2
+
     var target_dir: Vector2 = Vector2((1.0 if ah.facing_right else -1.0), 0.0)
     for b: Player in $PlayerDetection.get_overlapping_bodies():
         if b == p:
             continue
 
-        target_dir = p.global_position.direction_to(b.global_position)
+        target_dir = p.global_position.direction_to(b.global_position + Vector2(0.0, -24.0))
         if target_dir.y > 0.0:
             p.velocity.y = -200.0
         break
 
     p.velocity.x = dir_mult() * 500.0
-    var new_bullet: NSpecBullet = bullet_scene.instantiate()
-    add_child(new_bullet)
-    new_bullet.global_position = global_position
-    new_bullet.direction = target_dir
-    new_bullet.hit.connect(_on_bullet_hit)
-    new_bullet.p = p
+    var bullet: Projectile = new_bullet()
+    bullet.direction = target_dir
+    bullet.data = proj_data

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dks0282fl2c80" path="res://Attacks/projectile.gd" id="1_r56qv"]
 
 [node name="Projectile" type="CharacterBody2D"]
+top_level = true
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("1_r56qv")

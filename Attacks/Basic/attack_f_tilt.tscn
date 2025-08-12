@@ -35,7 +35,7 @@ _data = {
 
 [node name="FTilt" instance=ExtResource("1_u2l5l")]
 script = ExtResource("2_v3mub")
-knockback = Vector2(400, -200)
+knockback = Vector2(200, -200)
 anim_name = &"attack_ftilt"
 
 [node name="Shape" parent="HitBox" index="0"]
