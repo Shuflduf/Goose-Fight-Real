@@ -7,3 +7,4 @@ func process_hit(data: DamageData) -> void:
     p.health += data.health
     p.health_indicator.value = p.health
     p.state = p.MoveState.Stunned
+    %Sprites.modulate = Color(0.7, 0.7, 0.7, 1.0)
