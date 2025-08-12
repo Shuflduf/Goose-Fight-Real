@@ -1,4 +1,7 @@
+class_name PWallJumps
 extends PlayerComponent
+
+signal jumped
 
 const JUMP_FORCE: float = -750.0
 const PUSHBACK_FORCE: float = 600.0
@@ -10,6 +13,7 @@ func _unhandled_input(event: InputEvent) -> void:
         p.velocity.y = JUMP_FORCE
         p.velocity.x = PUSHBACK_FORCE * p.get_wall_normal().x
         has_walljump = false
+        jumped.emit()
 
 
 func _physics_process(_delta: float) -> void:

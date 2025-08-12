@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var hmove: PHorizMovement = $HorizontalMovement
 @onready var vmove: PVertMovement = $VerticalMovement
 @onready var hit_handler: PHitHandler = $HitHandler
+@onready var wall_jump: PWallJumps = $WallJump
+
 
 @export var input_index: int = -1
 @export var color_map: ColorMap
