@@ -414,6 +414,10 @@ frame_progress = 1.0
 script = ExtResource("5_p5o4e")
 metadata/_custom_type_script = "uid://b1hxng224wd66"
 
+[node name="StunTimer" type="Timer" parent="HitHandler"]
+wait_time = 0.7
+one_shot = true
+
 [node name="VerticalMovement" type="Node" parent="." node_paths=PackedStringArray("h_movement")]
 script = ExtResource("3_i3pqv")
 h_movement = NodePath("../HorizontalMovement")
@@ -448,6 +452,7 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 
 [connection signal="animation_finished" from="Sprites" to="AnimHandler" method="_on_sprites_animation_finished"]
 [connection signal="animation_finished" from="Sprites" to="Attacks" method="_on_sprites_animation_finished"]
+[connection signal="timeout" from="HitHandler/StunTimer" to="HitHandler" method="_on_stun_timer_timeout"]
 [connection signal="jump_queued" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jump_queued"]
 [connection signal="jumped" from="VerticalMovement" to="AnimHandler" method="_on_vertical_movement_jumped"]
 [connection signal="didnt_move" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_didnt_move"]
