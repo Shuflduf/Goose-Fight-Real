@@ -30,6 +30,8 @@ _data = {
 [node name="ADSpec" instance=ExtResource("1_l7top")]
 script = ExtResource("2_nwgad")
 bomb_scene = ExtResource("3_46mo0")
+health = 8
+knockback = 800.0
 anim_name = &"attack_adspec"
 
 [node name="Anim" parent="." index="0"]

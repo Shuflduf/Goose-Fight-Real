@@ -1,8 +1,12 @@
 extends Attack
 
 @export var bomb_scene: PackedScene
+@export var health: int
+@export var knockback: float
 
 var last_bomb: Projectile
+
+
 
 func spawn_bomb() -> void:
     p.velocity.y = -300.0
@@ -15,6 +19,8 @@ func spawn_bomb() -> void:
     last_bomb.global_position = global_position
     last_bomb.velocity.y = 50.0
     last_bomb.p = p
+    last_bomb.health = health
+    last_bomb.knockback = knockback
     last_bomb.hit.connect(_on_bomb_hit)
 
 
