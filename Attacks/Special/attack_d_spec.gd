@@ -1,11 +1,5 @@
 extends Attack
 
-@onready var pepsi_pos: float = $PepsiParent.position.x
-
-func flip() -> void:
-    $PepsiParent.position.x = pepsi_pos * dir_mult()
-
-
 func increase_speed() -> void:
     p.hmove.movement_speed_mult += 0.5
 

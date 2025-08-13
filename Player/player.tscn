@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://difolhje4qshv"]
+[gd_scene load_steps=53 format=3 uid="uid://difolhje4qshv"]
 
 [ext_resource type="Script" uid="uid://7s2avvmicf4j" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Resource" uid="uid://cevxedpjw068j" path="res://Player/main_color_map.tres" id="2_n471f"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b77con38nd63l" path="res://Player/attack_handler.gd" id="7_b26j0"]
 [ext_resource type="Resource" uid="uid://bl10p7n4y537l" path="res://Attacks/main_attack_set.tres" id="11_5htga"]
 [ext_resource type="Script" uid="uid://euqlrk38ot1c" path="res://Player/input_handler.gd" id="11_apopc"]
+[ext_resource type="PackedScene" uid="uid://blruu806aguay" path="res://Attacks/Special/attack_d_spec.tscn" id="13_gu6f8"]
 [ext_resource type="Script" uid="uid://5bumq6m7sqfd" path="res://Player/crouch.gd" id="14_gu6f8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
@@ -404,10 +405,8 @@ material = SubResource("ShaderMaterial_n471f")
 position = Vector2(0, -28)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"attack_abtilt"
+animation = &"attack_dspec"
 autoplay = "idle"
-frame = 2
-frame_progress = 1.0
 
 [node name="HitHandler" type="Node" parent="."]
 script = ExtResource("5_p5o4e")
@@ -444,6 +443,8 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 script = ExtResource("7_b26j0")
 attacks = ExtResource("11_5htga")
 sprites = NodePath("../Sprites")
+
+[node name="DSpec" parent="Attacks" instance=ExtResource("13_gu6f8")]
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("11_apopc")
