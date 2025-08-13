@@ -2,7 +2,6 @@ extends Node2D
 
 func _process(_delta: float) -> void:
     var offset: Vector2 = %Center.get_local_mouse_position() - %Cam.position
-    print(offset)
     %Cam.position = offset / 50.0
 
 

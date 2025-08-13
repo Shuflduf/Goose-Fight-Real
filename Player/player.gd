@@ -34,3 +34,9 @@ func _ready() -> void:
 
 func hit(data: DamageData) -> void:
     hit_handler.process_hit(data)
+
+
+func died() -> void:
+    health_indicator.death_count += 1
+    health = 0
+    health_indicator.value = 0

@@ -9,6 +9,10 @@ var value: int = 0:
         value = new
         $Bar.value = value
         %Label.text = str(new) + "%"
+var death_count: int = 0:
+    set(new):
+        death_count = new
+        %DeathCount.text = str(death_count)
 
 func _ready() -> void:
     value = value

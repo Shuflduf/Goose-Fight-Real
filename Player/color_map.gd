@@ -8,4 +8,5 @@ enum VisualScheme {
     White,
     Red,
     Purple,
+    Max,
 }

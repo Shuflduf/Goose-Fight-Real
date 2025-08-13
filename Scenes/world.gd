@@ -28,14 +28,20 @@ func _unhandled_input(event: InputEvent) -> void:
         registered_devices.append(event.device)
         spawn_player(event.device)
 
+    if event.is_action_pressed(&"dummy"):
+        spawn_player(10000)
+
 
 func spawn_player(input_index: int) -> void:
     var new_player: Player = player_scene.instantiate()
     new_player.position = $SpawnPos.position
     new_player.input_index = input_index
+    new_player.scheme = randi_range(0, ColorMap.VisualScheme.Max - 1) as ColorMap.VisualScheme
+
     $Players.add_child(new_player)
 
     var new_health_indic: HealthIndicator = health_indicator_scene.instantiate()
+    new_health_indic.scheme = new_player.scheme
     %Indicators.add_child(new_health_indic)
     new_player.health_indicator = new_health_indic
     # make sure to set the color scheme here

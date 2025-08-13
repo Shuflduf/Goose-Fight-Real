@@ -44,6 +44,7 @@ offset_top = 104.0
 offset_right = 350.0
 offset_bottom = 499.0
 tooltip_text = "Z or Top Face Button to Jump"
+mouse_default_cursor_shape = 2
 
 [node name="Support" type="ReferenceRect" parent="."]
 layout_mode = 0
@@ -52,6 +53,7 @@ offset_top = 508.0
 offset_right = 350.0
 offset_bottom = 629.0
 tooltip_text = "This project was made for Hack Club Summer of Making. If you have any questions, you can reach me on the HC Slack (@Shuflduf)"
+mouse_default_cursor_shape = 2
 
 [node name="Attack" type="ReferenceRect" parent="."]
 layout_mode = 0
@@ -73,6 +75,7 @@ For each input direction, there is also a corresponding attack, as well as a dif
 
 You can dash by performing two move actions in the same direction in the same timeframe.
 You can perform dash attacks by using a basic attack while dashing."
+mouse_default_cursor_shape = 2
 
 [node name="Knockback" type="ReferenceRect" parent="."]
 layout_mode = 0
@@ -81,6 +84,7 @@ offset_top = 102.0
 offset_right = 1017.0
 offset_bottom = 310.0
 tooltip_text = "The more \"percent\" a player has taken, the more knockback they will take."
+mouse_default_cursor_shape = 2
 
 [node name="NoFriends" type="ReferenceRect" parent="."]
 layout_mode = 0
@@ -92,6 +96,7 @@ tooltip_text = "This game is designed for multiple people, using multiple contro
 However, if you're in the unfortunate circumstance of not having any friends,
 you can press the H button on keyboard,
 or the d-pad on controller to spawn a dummy player."
+mouse_default_cursor_shape = 2
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

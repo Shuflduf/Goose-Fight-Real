@@ -30,6 +30,8 @@ func event_is_action_just_pressed(event: InputEvent, action: StringName) -> bool
         return false
 
     if verify_device(event):
+        if action == &"debug":
+            print_stack()
         return event.is_action_pressed(action)
     else:
         return false
