@@ -101,6 +101,7 @@ func _on_attack_damage(data: DamageData, body: Player) -> void:
     body.hit(data)
 
 func _on_attack_started(anim_name: StringName) -> void:
+    DebugDraw2D.set_text("from attacks", anim_name)
     attack_started.emit(anim_name)
     p.state = Player.MoveState.None
 

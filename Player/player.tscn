@@ -460,4 +460,3 @@ metadata/_custom_type_script = "uid://b1hxng224wd66"
 [connection signal="flip" from="HorizontalMovement" to="Attacks" method="_on_horizontal_movement_flip"]
 [connection signal="moved" from="HorizontalMovement" to="AnimHandler" method="_on_horizontal_movement_moved"]
 [connection signal="crouched" from="Crouch" to="AnimHandler" method="_on_crouch_crouched"]
-[connection signal="attack_started" from="Attacks" to="AnimHandler" method="_on_attacks_attack_started"]

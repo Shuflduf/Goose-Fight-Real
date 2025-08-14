@@ -50,8 +50,10 @@ func _on_horizontal_movement_flip(right: bool) -> void:
         sprites.play(&"flip")
         sprites.flip_h = right
 
-
+func _ready() -> void:
+    $"../Attacks".attack_started.connect(_on_attacks_attack_started)
 func _on_attacks_attack_started(anim_name: StringName) -> void:
+    DebugDraw2D.set_text("Anim", anim_name)
     sprites.play(anim_name)
 
 
