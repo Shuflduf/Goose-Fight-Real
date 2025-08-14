@@ -1,7 +1,0 @@
-# Godot 4+ specific ignores
-.godot/
-/android/
-addons/godotsteam
-addons/godot_super-wakatime
-addons/debug_draw_3d
-Export

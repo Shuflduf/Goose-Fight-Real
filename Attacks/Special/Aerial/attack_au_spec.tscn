@@ -1,7 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfvsf6gds1lun"]
-
-[ext_resource type="PackedScene" uid="uid://b0fsufejouwtq" path="res://Attacks/Special/attack_u_spec.tscn" id="1_t60be"]
-[ext_resource type="Script" uid="uid://cnesuo6y311xb" path="res://Attacks/Special/Aerial/attack_au_spec.gd" id="2_pw10q"]
-
-[node name="AUSpec" instance=ExtResource("1_t60be")]
-script = ExtResource("2_pw10q")
