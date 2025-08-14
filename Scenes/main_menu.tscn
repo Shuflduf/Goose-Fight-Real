@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnlyeivt0qw2a" path="res://Sprites/arena_bg.png" id="1_48xlc"]
 [ext_resource type="Script" uid="uid://ln4wh4peowtp" path="res://Scenes/main_menu.gd" id="1_ce3w2"]
 [ext_resource type="Shader" uid="uid://wyxymtgvihrk" path="res://Player/change_color.gdshader" id="2_1ehe0"]
-[ext_resource type="PackedScene" uid="uid://ejpmglpsrli" path="res://guide.tscn" id="2_n45e2"]
+[ext_resource type="PackedScene" uid="uid://ejpmglpsrli" path="res://Scenes/guide.tscn" id="2_n45e2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ce3w2"]
 resource_local_to_scene = true
